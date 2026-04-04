@@ -1,0 +1,6 @@
+policy_id,holder_name,status,plan_type,coverage_limit,start_date,end_date,waiting_period_days
+POL-2024-GOLD-001,Rahul Sharma,active,gold,500000,2024-01-01,2025-12-31,30
+POL-2024-GOLD-002,Priya Mehta,active,gold,500000,2023-06-15,2025-06-14,30
+POL-2024-SILV-003,Anita Verma,active,silver,250000,2024-03-01,2026-02-28,60
+POL-2023-SILV-004,Deepak Nair,lapsed,silver,250000,2021-07-01,2023-06-30,60
+POL-2022-GOLD-005,Sunita Patel,expired,gold,500000,2020-04-01,2022-03-31,30

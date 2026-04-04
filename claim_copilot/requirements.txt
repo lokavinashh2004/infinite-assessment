@@ -1,0 +1,35 @@
+# ─── Web framework ────────────────────────────────────────────────────────────
+fastapi
+uvicorn[standard]
+python-multipart
+
+# ─── Groq API ─────────────────────────────────────────────────────────────────
+groq
+
+# ─── Document reading ─────────────────────────────────────────────────────────
+pdfplumber
+pytesseract
+Pillow
+
+# ─── RAG stack ────────────────────────────────────────────────────────────────
+langchain
+langchain-community
+chromadb
+sentence-transformers
+
+# ─── Structured data ──────────────────────────────────────────────────────────
+pandas
+
+# ─── Validation ───────────────────────────────────────────────────────────────
+pydantic
+
+# ─── Configuration ────────────────────────────────────────────────────────────
+python-dotenv
+
+# ─── Testing ──────────────────────────────────────────────────────────────────
+pytest
+pytest-asyncio
+
+# ─── Transitive deps ──────────────────────────────────────────────────────────
+httpx
+anyio

@@ -1,0 +1,66 @@
+[
+  {
+    "clause_id": "CL-001",
+    "description": "Surgical Procedures",
+    "keywords": ["surgery", "surgical", "operation", "appendectomy", "cholecystectomy", "bypass", "laparoscopy", "hernia repair"],
+    "eligible_plans": ["gold", "silver"],
+    "sub_limit": 300000,
+    "notes": "Covers all listed surgical procedures up to sub-limit. Pre-authorisation required for elective surgery. Cosmetic surgeries excluded."
+  },
+  {
+    "clause_id": "CL-002",
+    "description": "Intensive Care Unit (ICU) Charges",
+    "keywords": ["icu", "intensive care", "critical care", "ventilator", "life support"],
+    "eligible_plans": ["gold", "silver"],
+    "sub_limit": 10000,
+    "notes": "ICU charges covered up to ₹10,000 per day. Maximum 15 days per hospitalisation. Prior approval required for admissions exceeding 7 days."
+  },
+  {
+    "clause_id": "CL-003",
+    "description": "Room and Board Charges",
+    "keywords": ["room", "board", "accommodation", "ward", "nursing charges", "bed charges"],
+    "eligible_plans": ["gold", "silver", "bronze"],
+    "sub_limit": 5000,
+    "notes": "Single private room covered up to ₹5,000 per day for Gold plan. Silver plan: shared room up to ₹2,500 per day. ICU room covered separately under CL-002."
+  },
+  {
+    "clause_id": "CL-004",
+    "description": "Medicines and Consumables",
+    "keywords": ["medicine", "medication", "drug", "pharmacy", "consumable", "injection", "antibiotic", "iv fluid", "saline"],
+    "eligible_plans": ["gold", "silver"],
+    "sub_limit": 50000,
+    "notes": "In-hospital medicines and consumables covered up to sub-limit. OPD medicines covered only under Gold plan with valid prescription."
+  },
+  {
+    "clause_id": "CL-005",
+    "description": "Outpatient Consultation and Diagnostics",
+    "keywords": ["consultation", "opd", "outpatient", "x-ray", "scan", "mri", "ct scan", "blood test", "urine test", "pathology", "diagnostic"],
+    "eligible_plans": ["gold"],
+    "sub_limit": 25000,
+    "notes": "OPD consultations and diagnostics covered only under Gold plan. Requires referral from primary physician for specialist consultations. Annual limit applies."
+  },
+  {
+    "clause_id": "CL-006",
+    "description": "Daycare Procedures",
+    "keywords": ["daycare", "day care", "day surgery", "chemotherapy", "dialysis", "cataract", "lithotripsy", "radiotherapy", "angiography"],
+    "eligible_plans": ["gold", "silver"],
+    "sub_limit": 75000,
+    "notes": "Covers listed daycare procedures not requiring 24-hour hospitalisation. Pre-authorisation mandatory. Limited to approved daycare procedure list."
+  },
+  {
+    "clause_id": "CL-007",
+    "description": "Maternity and Newborn Care",
+    "keywords": ["maternity", "delivery", "childbirth", "c-section", "caesarean", "prenatal", "antenatal", "postnatal", "newborn", "neonatal"],
+    "eligible_plans": ["gold"],
+    "sub_limit": 100000,
+    "notes": "Maternity benefits available only under Gold plan. 9-month waiting period applies. Covers normal delivery, C-section, and newborn care up to 90 days. Pre-existing pregnancy excluded."
+  },
+  {
+    "clause_id": "CL-008",
+    "description": "Dental Treatment",
+    "keywords": ["dental", "tooth", "teeth", "gum", "root canal", "extraction", "implant", "orthodontic", "denture"],
+    "eligible_plans": [],
+    "sub_limit": 0,
+    "notes": "Dental treatments are excluded from all plans unless arising from an accident. Accidental dental injury claims to be processed under accidental benefit rider."
+  }
+]
