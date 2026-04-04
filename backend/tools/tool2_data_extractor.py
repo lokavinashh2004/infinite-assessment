@@ -122,6 +122,20 @@ def extract_claim_data(raw_text: str) -> ExtractedClaim:
             f"Parse error: {exc}. Raw response (first 500 chars): {raw_response[:500]!r}"
         ) from exc
 
+    # Sanitize nulls to sensible defaults as Pydantic model requires strict types
+    data["policy_id"] = data.get("policy_id") or "UNKNOWN"
+    data["patient_name"] = data.get("patient_name") or "UNKNOWN"
+    data["patient_age"] = data.get("patient_age") or 0
+    data["hospital_name"] = data.get("hospital_name") or "UNKNOWN"
+    data["admission_date"] = data.get("admission_date") or "1970-01-01"
+    data["discharge_date"] = data.get("discharge_date") or "1970-01-01"
+    data["doctor_name"] = data.get("doctor_name") or "UNKNOWN"
+    data["claim_type"] = data.get("claim_type") or "inpatient"
+    data["diagnosis"] = data.get("diagnosis") or []
+    data["treatment"] = data.get("treatment") or []
+    data["total_amount"] = data.get("total_amount") or 0.0
+    data["itemized_costs"] = data.get("itemized_costs") or []
+
     try:
         claim = ExtractedClaim(**data)
     except Exception as exc:

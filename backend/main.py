@@ -16,6 +16,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 from routers.claims import claims_bp
+from routers.chat import chat_bp
 
 # ─── Application factory ───────────────────────────────────────────────────────
 
@@ -28,6 +29,7 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 # ─── Routers ──────────────────────────────────────────────────────────────────
 
 app.register_blueprint(claims_bp)
+app.register_blueprint(chat_bp)
 
 # ─── Health check ─────────────────────────────────────────────────────────────
 

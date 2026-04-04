@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import './App.css'
+import Chatbot from './Chatbot' // <--- Added import
 
 function App() {
   const [file, setFile] = useState(null)
@@ -152,6 +153,8 @@ function App() {
           </div>
         )}
       </main>
+
+      <Chatbot claimContext={result} />
     </div>
   )
 }
