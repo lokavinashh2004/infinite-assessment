@@ -34,4 +34,4 @@ pytest-asyncio
 # ─── Transitive deps ──────────────────────────────────────────────────────────
 httpx
 anyio
-mcp[cli]
+mcp[cli]
