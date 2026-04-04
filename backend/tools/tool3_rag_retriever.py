@@ -66,7 +66,7 @@ def build_vectorstore() -> None:
     all_docs: list[Any] = []
 
     import json
-    from langchain.docstore.document import Document
+    from langchain_core.documents import Document
 
     for file_path in files:
         sys.stderr.write(f"[RAG] Loading: {file_path.name}\n")

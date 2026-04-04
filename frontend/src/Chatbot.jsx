@@ -1,114 +1,107 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Chatbot.css';
 
+const API = 'http://localhost:8000';
+const now = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
 export default function Chatbot({ claimContext }) {
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: "Hi! I'm your MCP Bot. Ask me anything about your claim or policy rules!" }
-  ]);
-  const [inputMessage, setInputMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  useEffect(() => {
-    if (claimContext && claimContext.decision) {
-      const decisionStr = claimContext.decision.toLowerCase();
-      const amountStr = claimContext.approved_amount ? ` ₹${claimContext.approved_amount.toLocaleString()}` : '';
-      const autoMessage = `Your claim was **${decisionStr}**${amountStr}. \nReason: ${claimContext.reason}\n\nWould you like me to explain any part of this policy or adjudication decision?`;
-      
-      setMessages(prev => [
-        ...prev,
-        { role: 'assistant', content: autoMessage }
-      ]);
+    {
+      id: 0,
+      role: 'bot',
+      text: 'Claim processed! Ask me anything about the decision, policy rules, or coverage details.',
+      time: now()
     }
+  ]);
+  const [input, setInput] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  const bottomRef = useRef(null);
+
+  // Auto-push summary when claim context arrives
+  useEffect(() => {
+    if (!claimContext) return;
+    const amt = Number(claimContext.approved_amount).toLocaleString('en-IN', {
+      style: 'currency', currency: 'INR', maximumFractionDigits: 0
+    });
+    const clauses = claimContext.clauses_cited?.join(', ') || 'none';
+    push('bot',
+      `Claim for ${claimContext.patient_name} → ${claimContext.decision} (${amt}). ` +
+      `Reason: ${claimContext.reason}. Clauses: ${clauses}.`
+    );
   }, [claimContext]);
 
-  const handleSendMessage = async (e) => {
-    e.preventDefault();
-    if (!inputMessage.trim()) return;
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, isTyping]);
 
-    const newMessages = [...messages, { role: 'user', content: inputMessage }];
-    setMessages(newMessages);
-    setInputMessage('');
-    setIsLoading(true);
+  const push = (role, text) =>
+    setMessages(p => [...p, { id: Date.now() + Math.random(), role, text, time: now() }]);
 
+  const send = async () => {
+    const msg = input.trim();
+    if (!msg) return;
+    push('user', msg);
+    setInput('');
+    setIsTyping(true);
     try {
-      // Send history avoiding the initial greeting message
-      const history = newMessages.slice(1).map(m => ({ role: m.role, content: m.content }));
-      
-      const response = await axios.post('http://localhost:8000/chat', {
-        message: inputMessage,
-        context: claimContext, 
-        history: history.slice(0, -1) 
+      const { data } = await axios.post(`${API}/chat`, {
+        message: msg,
+        context: claimContext
       });
-      
-      setMessages([...newMessages, { role: 'assistant', content: response.data.reply }]);
-    } catch (err) {
-      setMessages([...newMessages, { role: 'assistant', content: "Sorry, I'm having trouble connecting to the policy backend." }]);
+      push('bot', data.reply);
+    } catch {
+      push('bot', "Sorry, I couldn't reach the server right now.");
     } finally {
-      setIsLoading(false);
+      setIsTyping(false);
     }
-  };
-
-  const renderText = (text) => {
-    // Basic rendering to support new lines and bolding text that has **
-    return text.split('\n').map((line, i) => {
-      // Replace **text** with <strong>text</strong>
-      const lineHtml = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      return (
-        <span key={i}>
-          <span dangerouslySetInnerHTML={{ __html: lineHtml }} />
-          <br />
-        </span>
-      );
-    });
   };
 
   return (
-    <div className="chatbot-card fade-in">
-      <div className="chat-window">
-        <div className="chat-header">
-          <h3>MCP</h3>
+    <div className="chat-wrap">
+      {/* Header */}
+      <div className="chat-head">
+        <div className="chat-head-left">
+          <div className="chat-avatar">AI</div>
+          <div>
+            <div className="chat-title">ClaimCopilot AI</div>
+            <div className="chat-sub">Ask anything about this claim</div>
+          </div>
         </div>
-        
-        <div className="chat-messages">
-          {messages.map((msg, idx) => (
-            <div key={idx} className={`message ${msg.role}`}>
-              <div className="message-bubble">
-                {renderText(msg.content)}
-              </div>
-            </div>
-          ))}
-          {isLoading && (
-            <div className="message assistant">
-              <div className="message-bubble loading">
-                <div className="dot"></div>
-                <div className="dot"></div>
-                <div className="dot :dot"></div>
-              </div>
-            </div>
-          )}
-          <div ref={messagesEndRef} />
+        <div className="chat-status">
+          <div className="chat-status-dot" style={{ background: claimContext ? 'var(--green)' : 'var(--amber)' }} />
+          {claimContext ? 'Ready' : 'Awaiting claim'}
         </div>
-        
-        <form className="chat-input-form" onSubmit={handleSendMessage}>
-          <input 
-            type="text" 
-            placeholder="Ask about your policy or claim..." 
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            disabled={isLoading}
-          />
-          <button type="submit" disabled={!inputMessage.trim() || isLoading}>Send</button>
-        </form>
+      </div>
+
+      {/* Messages */}
+      <div className="msgs">
+        {messages.map(m => (
+          <div key={m.id} className={`msg ${m.role}`}>
+            <div className="bubble">{m.text}</div>
+            <div className="msg-time">{m.time}</div>
+          </div>
+        ))}
+        {isTyping && (
+          <div className="typing-bubble">
+            <div className="dot-b" /><div className="dot-b" /><div className="dot-b" />
+          </div>
+        )}
+        <div ref={bottomRef} />
+      </div>
+
+      {/* Input */}
+      <div className="chat-input-row">
+        <input
+          className="chat-input"
+          placeholder="Ask about the claim, policy, or coverage…"
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && send()}
+        />
+        <button className="btn-send" disabled={!input.trim()} onClick={send}>
+          Send
+        </button>
       </div>
     </div>
   );
