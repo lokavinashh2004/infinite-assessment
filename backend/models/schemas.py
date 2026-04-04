@@ -155,4 +155,8 @@ class FinalResponse(BaseModel):
         default_factory=list,
         description="First 120 characters of each RAG-retrieved rule used in processing",
     )
+    # Full source records (for chatbot context)
+    claim_details: Optional[dict] = Field(None, description="The full ExtractedClaim object")
+    policy_details: Optional[dict] = Field(None, description="The full PolicyRecord object")
+
     timestamp: str = Field(..., description="ISO 8601 UTC timestamp of the pipeline completion")

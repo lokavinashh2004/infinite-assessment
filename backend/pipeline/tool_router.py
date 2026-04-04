@@ -163,6 +163,8 @@ def run_pipeline(file_path: str) -> dict:
         total_claimed=claim.total_amount,
         execution_log=execution_log,
         rag_rules_used=rag_rules_used,
+        claim_details=claim.model_dump() if hasattr(claim, 'model_dump') else {},
+        policy_details=policy_record.model_dump() if hasattr(policy_record, 'model_dump') else {},
         timestamp=decision.timestamp,
     )
 
