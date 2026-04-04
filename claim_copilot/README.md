@@ -138,7 +138,7 @@ python scripts/build_vectorstore.py
 ## Running the Server
 
 ```bash
-uvicorn claim_copilot.main:app --reload
+uvicorn main:app --reload
 ```
 
 The API will be available at: **http://localhost:8000**

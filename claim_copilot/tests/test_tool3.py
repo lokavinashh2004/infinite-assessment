@@ -16,7 +16,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from claim_copilot.models.schemas import RAGResult, RAGRuleItem
+from models.schemas import RAGResult, RAGRuleItem
 
 
 # ─── Fixtures ──────────────────────────────────────────────────────────────────
@@ -53,12 +53,12 @@ class TestTool3RagRetriever:
 
     def test_retrieve_returns_ranked_rules(self, mock_vectorstore) -> None:
         """Valid query should return a RAGResult with ranked RAGRuleItems."""
-        with patch("claim_copilot.tools.tool3_rag_retriever._load_vectorstore",
+        with patch("tools.tool3_rag_retriever._load_vectorstore",
                    return_value=mock_vectorstore), \
-             patch("claim_copilot.tools.tool3_rag_retriever.Path.iterdir",
+             patch("tools.tool3_rag_retriever.Path.iterdir",
                    return_value=iter([MagicMock()])):
 
-            from claim_copilot.tools.tool3_rag_retriever import retrieve_policy_rules
+            from tools.tool3_rag_retriever import retrieve_policy_rules
             result = retrieve_policy_rules(
                 treatment=["Appendectomy", "ICU care"],
                 claim_type="inpatient",
@@ -77,12 +77,12 @@ class TestTool3RagRetriever:
 
     def test_retrieve_with_empty_treatment_list(self, mock_vectorstore) -> None:
         """Empty treatment list should still produce a valid query and return rules."""
-        with patch("claim_copilot.tools.tool3_rag_retriever._load_vectorstore",
+        with patch("tools.tool3_rag_retriever._load_vectorstore",
                    return_value=mock_vectorstore), \
-             patch("claim_copilot.tools.tool3_rag_retriever.Path.iterdir",
+             patch("tools.tool3_rag_retriever.Path.iterdir",
                    return_value=iter([MagicMock()])):
 
-            from claim_copilot.tools.tool3_rag_retriever import retrieve_policy_rules
+            from tools.tool3_rag_retriever import retrieve_policy_rules
             result = retrieve_policy_rules(
                 treatment=[],
                 claim_type="outpatient",
@@ -100,11 +100,11 @@ class TestTool3RagRetriever:
         empty_vs_path = tmp_path / "empty_vs"
         empty_vs_path.mkdir()
 
-        with patch("claim_copilot.tools.tool3_rag_retriever.VECTOR_DB_DIR", empty_vs_path), \
-             patch("claim_copilot.tools.tool3_rag_retriever.Path.iterdir",
+        with patch("tools.tool3_rag_retriever.VECTOR_DB_DIR", empty_vs_path), \
+             patch("tools.tool3_rag_retriever.Path.iterdir",
                    return_value=iter([])):   # Empty directory
 
-            from claim_copilot.tools.tool3_rag_retriever import retrieve_policy_rules
+            from tools.tool3_rag_retriever import retrieve_policy_rules
             with pytest.raises(FileNotFoundError, match="Vector store not found"):
                 retrieve_policy_rules(
                     treatment=["surgery"],
@@ -115,12 +115,12 @@ class TestTool3RagRetriever:
 
     def test_retrieved_rule_content(self, mock_vectorstore) -> None:
         """Rule text should match the mock document content."""
-        with patch("claim_copilot.tools.tool3_rag_retriever._load_vectorstore",
+        with patch("tools.tool3_rag_retriever._load_vectorstore",
                    return_value=mock_vectorstore), \
-             patch("claim_copilot.tools.tool3_rag_retriever.Path.iterdir",
+             patch("tools.tool3_rag_retriever.Path.iterdir",
                    return_value=iter([MagicMock()])):
 
-            from claim_copilot.tools.tool3_rag_retriever import retrieve_policy_rules
+            from tools.tool3_rag_retriever import retrieve_policy_rules
             result = retrieve_policy_rules(
                 treatment=["Surgery"],
                 claim_type="inpatient",

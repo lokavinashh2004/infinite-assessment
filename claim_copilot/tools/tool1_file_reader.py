@@ -16,7 +16,7 @@ import pdfplumber
 import pytesseract
 from PIL import Image
 
-from claim_copilot.models.schemas import FileReadResult
+from models.schemas import FileReadResult
 
 # Supported file-type groups
 _PDF_EXTS = {".pdf"}

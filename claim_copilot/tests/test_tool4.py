@@ -71,9 +71,9 @@ class TestGetPolicyRecord:
 
     def test_policy_found_active_gold(self, policies_csv: Path, monkeypatch) -> None:
         """Active gold policy should be found and returned with correct fields."""
-        monkeypatch.setattr("claim_copilot.tools.tool4_structured_retriever.POLICY_CSV", policies_csv)
+        monkeypatch.setattr("tools.tool4_structured_retriever.POLICY_CSV", policies_csv)
 
-        from claim_copilot.tools.tool4_structured_retriever import get_policy_record
+        from tools.tool4_structured_retriever import get_policy_record
         result = get_policy_record("POL-2024-GOLD-001")
 
         assert result.found is True
@@ -86,9 +86,9 @@ class TestGetPolicyRecord:
 
     def test_policy_found_lapsed(self, policies_csv: Path, monkeypatch) -> None:
         """Lapsed policy should be found with status='lapsed'."""
-        monkeypatch.setattr("claim_copilot.tools.tool4_structured_retriever.POLICY_CSV", policies_csv)
+        monkeypatch.setattr("tools.tool4_structured_retriever.POLICY_CSV", policies_csv)
 
-        from claim_copilot.tools.tool4_structured_retriever import get_policy_record
+        from tools.tool4_structured_retriever import get_policy_record
         result = get_policy_record("POL-2023-SILV-004")
 
         assert result.found is True
@@ -96,9 +96,9 @@ class TestGetPolicyRecord:
 
     def test_policy_not_found(self, policies_csv: Path, monkeypatch) -> None:
         """Unknown policy ID should return found=False with no other fields."""
-        monkeypatch.setattr("claim_copilot.tools.tool4_structured_retriever.POLICY_CSV", policies_csv)
+        monkeypatch.setattr("tools.tool4_structured_retriever.POLICY_CSV", policies_csv)
 
-        from claim_copilot.tools.tool4_structured_retriever import get_policy_record
+        from tools.tool4_structured_retriever import get_policy_record
         result = get_policy_record("POL-9999-NONE-999")
 
         assert result.found is False
@@ -109,10 +109,10 @@ class TestGetPolicyRecord:
     def test_policy_csv_missing_raises(self, tmp_path: Path, monkeypatch) -> None:
         """Missing CSV file should raise FileNotFoundError."""
         monkeypatch.setattr(
-            "claim_copilot.tools.tool4_structured_retriever.POLICY_CSV",
+            "tools.tool4_structured_retriever.POLICY_CSV",
             tmp_path / "nonexistent.csv",
         )
-        from claim_copilot.tools.tool4_structured_retriever import get_policy_record
+        from tools.tool4_structured_retriever import get_policy_record
         with pytest.raises(FileNotFoundError):
             get_policy_record("POL-2024-GOLD-001")
 
@@ -124,9 +124,9 @@ class TestGetCoverageRules:
 
     def test_coverage_matched_gold_plan(self, coverage_json: Path, monkeypatch) -> None:
         """Surgery matched to CL-001 should be covered under gold plan."""
-        monkeypatch.setattr("claim_copilot.tools.tool4_structured_retriever.COVERAGE_JSON", coverage_json)
+        monkeypatch.setattr("tools.tool4_structured_retriever.COVERAGE_JSON", coverage_json)
 
-        from claim_copilot.tools.tool4_structured_retriever import get_coverage_rules
+        from tools.tool4_structured_retriever import get_coverage_rules
         result = get_coverage_rules(treatment=["Appendectomy", "surgery"], plan_type="gold")
 
         assert result.plan_type == "gold"
@@ -138,18 +138,18 @@ class TestGetCoverageRules:
 
     def test_dental_not_covered_any_plan(self, coverage_json: Path, monkeypatch) -> None:
         """Dental treatment should never be covered (eligible_plans=[])."""
-        monkeypatch.setattr("claim_copilot.tools.tool4_structured_retriever.COVERAGE_JSON", coverage_json)
+        monkeypatch.setattr("tools.tool4_structured_retriever.COVERAGE_JSON", coverage_json)
 
-        from claim_copilot.tools.tool4_structured_retriever import get_coverage_rules
+        from tools.tool4_structured_retriever import get_coverage_rules
         result = get_coverage_rules(treatment=["dental cleaning"], plan_type="gold")
 
         assert result.coverage_results[0].covered is False
 
     def test_unknown_treatment_not_covered(self, coverage_json: Path, monkeypatch) -> None:
         """Treatment with no matching clause should be marked not covered."""
-        monkeypatch.setattr("claim_copilot.tools.tool4_structured_retriever.COVERAGE_JSON", coverage_json)
+        monkeypatch.setattr("tools.tool4_structured_retriever.COVERAGE_JSON", coverage_json)
 
-        from claim_copilot.tools.tool4_structured_retriever import get_coverage_rules
+        from tools.tool4_structured_retriever import get_coverage_rules
         result = get_coverage_rules(treatment=["acupuncture"], plan_type="gold")
 
         assert result.coverage_results[0].covered is False
@@ -159,9 +159,9 @@ class TestGetCoverageRules:
     def test_coverage_json_missing_raises(self, tmp_path: Path, monkeypatch) -> None:
         """Missing JSON file should raise FileNotFoundError."""
         monkeypatch.setattr(
-            "claim_copilot.tools.tool4_structured_retriever.COVERAGE_JSON",
+            "tools.tool4_structured_retriever.COVERAGE_JSON",
             tmp_path / "nonexistent.json",
         )
-        from claim_copilot.tools.tool4_structured_retriever import get_coverage_rules
+        from tools.tool4_structured_retriever import get_coverage_rules
         with pytest.raises(FileNotFoundError):
             get_coverage_rules(treatment=["surgery"], plan_type="gold")

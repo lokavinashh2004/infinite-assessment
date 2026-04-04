@@ -20,14 +20,14 @@ from datetime import date, timedelta
 
 import pytest
 
-from claim_copilot.models.schemas import (
+from models.schemas import (
     CoverageResponse,
     CoverageResult,
     ExtractedClaim,
     ItemizedCost,
     PolicyRecord,
 )
-from claim_copilot.tools.tool5_validation_engine import validate_claim
+from tools.tool5_validation_engine import validate_claim
 
 
 # ─── Fixtures ──────────────────────────────────────────────────────────────────

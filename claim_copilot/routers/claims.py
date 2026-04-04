@@ -15,7 +15,7 @@ from pathlib import Path
 from fastapi import APIRouter, File, HTTPException, UploadFile
 from fastapi.responses import JSONResponse
 
-from claim_copilot.mcp.tool_router import run_pipeline
+from mcp.tool_router import run_pipeline
 
 router = APIRouter(prefix="/claims", tags=["Claims"])
 

@@ -12,8 +12,8 @@ import re
 
 from groq import Groq
 
-from claim_copilot.config import GROQ_API_KEY, GROQ_MODEL
-from claim_copilot.models.schemas import ExtractedClaim
+from config import GROQ_API_KEY, GROQ_MODEL
+from models.schemas import ExtractedClaim
 
 # Initialise the Groq client once at module level (no global mutable state).
 _client = Groq(api_key=GROQ_API_KEY)

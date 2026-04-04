@@ -16,12 +16,12 @@ import os
 from pathlib import Path
 from typing import Any
 
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 
-from claim_copilot.config import (
+from config import (
     CHUNK_OVERLAP,
     CHUNK_SIZE,
     EMBEDDING_MODEL,
@@ -29,7 +29,7 @@ from claim_copilot.config import (
     RAG_TOP_K,
     VECTOR_DB_DIR,
 )
-from claim_copilot.models.schemas import RAGResult, RAGRuleItem
+from models.schemas import RAGResult, RAGRuleItem
 
 # ─── Embeddings (loaded once at module level) ─────────────────────────────────
 

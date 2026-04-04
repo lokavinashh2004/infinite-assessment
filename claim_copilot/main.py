@@ -7,7 +7,7 @@ Registers:
   - POST /claims/process — claim processing pipeline (via claims router)
 
 Run with:
-  uvicorn claim_copilot.main:app --reload
+  uvicorn main:app --reload
 """
 
 from __future__ import annotations
@@ -15,7 +15,7 @@ from __future__ import annotations
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from claim_copilot.routers.claims import router as claims_router
+from routers.claims import router as claims_router
 
 # ─── Application factory ───────────────────────────────────────────────────────
 
@@ -73,7 +73,7 @@ if __name__ == "__main__":
     import uvicorn
 
     uvicorn.run(
-        "claim_copilot.main:app",
+        "main:app",
         host="0.0.0.0",
         port=8000,
         reload=True,

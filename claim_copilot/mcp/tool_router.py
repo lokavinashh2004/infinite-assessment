@@ -12,21 +12,21 @@ import concurrent.futures
 from datetime import datetime, timezone
 from pathlib import Path
 
-from claim_copilot.models.schemas import (
+from models.schemas import (
     CoverageResponse,
     ExtractedClaim,
     FinalResponse,
     RAGResult,
     ValidationDecision,
 )
-from claim_copilot.tools.tool1_file_reader import read_file
-from claim_copilot.tools.tool2_data_extractor import extract_claim_data
-from claim_copilot.tools.tool3_rag_retriever import retrieve_policy_rules
-from claim_copilot.tools.tool4_structured_retriever import (
+from tools.tool1_file_reader import read_file
+from tools.tool2_data_extractor import extract_claim_data
+from tools.tool3_rag_retriever import retrieve_policy_rules
+from tools.tool4_structured_retriever import (
     get_coverage_rules,
     get_policy_record,
 )
-from claim_copilot.tools.tool5_validation_engine import validate_claim
+from tools.tool5_validation_engine import validate_claim
 
 
 def run_pipeline(file_path: str) -> dict:
@@ -119,7 +119,7 @@ def run_pipeline(file_path: str) -> dict:
                 f"STEP 3 ⚠ — RAG retrieval failed (non-fatal, continuing): {exc}"
             )
             # RAG failure is non-fatal; create an empty result
-            from claim_copilot.models.schemas import RAGResult
+            from models.schemas import RAGResult
             rag_result = RAGResult(query="", rules=[])
 
         try:

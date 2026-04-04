@@ -66,10 +66,10 @@ class TestTool2DataExtractor:
         mock_response = json.dumps(VALID_CLAIM_DICT)
         mock_message = _make_mock_message(mock_response)
 
-        with patch("claim_copilot.tools.tool2_data_extractor._client") as mock_client:
+        with patch("tools.tool2_data_extractor._client") as mock_client:
             mock_client.chat.completions.create.return_value = mock_message
 
-            from claim_copilot.tools.tool2_data_extractor import extract_claim_data
+            from tools.tool2_data_extractor import extract_claim_data
             result = extract_claim_data(RAW_TEXT)
 
         assert result.policy_id == "POL-2024-GOLD-001"
@@ -87,10 +87,10 @@ class TestTool2DataExtractor:
         fenced_response = f"```json\n{json.dumps(VALID_CLAIM_DICT)}\n```"
         mock_message = _make_mock_message(fenced_response)
 
-        with patch("claim_copilot.tools.tool2_data_extractor._client") as mock_client:
+        with patch("tools.tool2_data_extractor._client") as mock_client:
             mock_client.chat.completions.create.return_value = mock_message
 
-            from claim_copilot.tools.tool2_data_extractor import extract_claim_data
+            from tools.tool2_data_extractor import extract_claim_data
             result = extract_claim_data(RAW_TEXT)
 
         assert result.policy_id == "POL-2024-GOLD-001"
@@ -103,10 +103,10 @@ class TestTool2DataExtractor:
         fenced_response = f"```\n{json.dumps(VALID_CLAIM_DICT)}\n```"
         mock_message = _make_mock_message(fenced_response)
 
-        with patch("claim_copilot.tools.tool2_data_extractor._client") as mock_client:
+        with patch("tools.tool2_data_extractor._client") as mock_client:
             mock_client.chat.completions.create.return_value = mock_message
 
-            from claim_copilot.tools.tool2_data_extractor import extract_claim_data
+            from tools.tool2_data_extractor import extract_claim_data
             result = extract_claim_data(RAW_TEXT)
 
         assert result.patient_name == "Rahul Sharma"
@@ -117,10 +117,10 @@ class TestTool2DataExtractor:
         """Non-JSON response from Groq should raise ValueError."""
         mock_message = _make_mock_message("I'm sorry, I cannot process this claim.")
 
-        with patch("claim_copilot.tools.tool2_data_extractor._client") as mock_client:
+        with patch("tools.tool2_data_extractor._client") as mock_client:
             mock_client.chat.completions.create.return_value = mock_message
 
-            from claim_copilot.tools.tool2_data_extractor import extract_claim_data
+            from tools.tool2_data_extractor import extract_claim_data
             with pytest.raises(ValueError, match="invalid JSON"):
                 extract_claim_data(RAW_TEXT)
 
@@ -131,10 +131,10 @@ class TestTool2DataExtractor:
         bad_dict = {**VALID_CLAIM_DICT, "claim_type": "emergency"}
         mock_message = _make_mock_message(json.dumps(bad_dict))
 
-        with patch("claim_copilot.tools.tool2_data_extractor._client") as mock_client:
+        with patch("tools.tool2_data_extractor._client") as mock_client:
             mock_client.chat.completions.create.return_value = mock_message
 
-            from claim_copilot.tools.tool2_data_extractor import extract_claim_data
+            from tools.tool2_data_extractor import extract_claim_data
             with pytest.raises(ValueError, match="claim_type"):
                 extract_claim_data(RAW_TEXT)
 
@@ -142,6 +142,6 @@ class TestTool2DataExtractor:
 
     def test_empty_raw_text_raises(self) -> None:
         """Passing empty string as raw_text should raise ValueError immediately."""
-        from claim_copilot.tools.tool2_data_extractor import extract_claim_data
+        from tools.tool2_data_extractor import extract_claim_data
         with pytest.raises(ValueError, match="raw_text must not be empty"):
             extract_claim_data("")

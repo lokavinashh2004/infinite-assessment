@@ -15,7 +15,7 @@ from __future__ import annotations
 from datetime import date, datetime, timezone
 from typing import Any
 
-from claim_copilot.models.schemas import (
+from models.schemas import (
     CoverageResponse,
     ExtractedClaim,
     PolicyRecord,

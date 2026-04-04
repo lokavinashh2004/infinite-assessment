@@ -57,8 +57,8 @@ class TestTool1FileReader:
         mock_pdf_ctx.__exit__ = MagicMock(return_value=False)
         mock_pdf_ctx.pages = [mock_page]
 
-        with patch("claim_copilot.tools.tool1_file_reader.pdfplumber.open", return_value=mock_pdf_ctx):
-            from claim_copilot.tools.tool1_file_reader import read_file
+        with patch("tools.tool1_file_reader.pdfplumber.open", return_value=mock_pdf_ctx):
+            from tools.tool1_file_reader import read_file
             result = read_file(str(pdf_path))
 
         assert result.file_name == "claim.pdf"
@@ -73,9 +73,9 @@ class TestTool1FileReader:
         """PNG image should be processed via pytesseract and return extracted text."""
         img_path = _make_temp_image(tmp_path, ".png")
 
-        with patch("claim_copilot.tools.tool1_file_reader.pytesseract.image_to_string",
+        with patch("tools.tool1_file_reader.pytesseract.image_to_string",
                    return_value=SAMPLE_TEXT):
-            from claim_copilot.tools.tool1_file_reader import read_file
+            from tools.tool1_file_reader import read_file
             result = read_file(str(img_path))
 
         assert result.file_type == "image/png"
@@ -99,10 +99,10 @@ class TestTool1FileReader:
         mock_pdf_ctx.__exit__ = MagicMock(return_value=False)
         mock_pdf_ctx.pages = [mock_page]
 
-        with patch("claim_copilot.tools.tool1_file_reader.pdfplumber.open", return_value=mock_pdf_ctx), \
-             patch("claim_copilot.tools.tool1_file_reader.pytesseract.image_to_string",
+        with patch("tools.tool1_file_reader.pdfplumber.open", return_value=mock_pdf_ctx), \
+             patch("tools.tool1_file_reader.pytesseract.image_to_string",
                    return_value="OCR extracted text"):
-            from claim_copilot.tools.tool1_file_reader import read_file
+            from tools.tool1_file_reader import read_file
             result = read_file(str(pdf_path))
 
         assert "OCR extracted text" in result.raw_text
@@ -115,7 +115,7 @@ class TestTool1FileReader:
         weird_path = tmp_path / "document.docx"
         weird_path.write_bytes(b"PK fake docx content")
 
-        from claim_copilot.tools.tool1_file_reader import read_file
+        from tools.tool1_file_reader import read_file
         with pytest.raises(ValueError, match="Unsupported file type"):
             read_file(str(weird_path))
 
@@ -123,7 +123,7 @@ class TestTool1FileReader:
 
     def test_file_not_found(self, tmp_path: Path) -> None:
         """Non-existent file path should raise FileNotFoundError."""
-        from claim_copilot.tools.tool1_file_reader import read_file
+        from tools.tool1_file_reader import read_file
         with pytest.raises(FileNotFoundError):
             read_file(str(tmp_path / "ghost.pdf"))
 
@@ -142,9 +142,9 @@ class TestTool1FileReader:
         mock_pdf_ctx.__exit__ = MagicMock(return_value=False)
         mock_pdf_ctx.pages = [mock_page]
 
-        with patch("claim_copilot.tools.tool1_file_reader.pdfplumber.open", return_value=mock_pdf_ctx), \
-             patch("claim_copilot.tools.tool1_file_reader.pytesseract.image_to_string",
+        with patch("tools.tool1_file_reader.pdfplumber.open", return_value=mock_pdf_ctx), \
+             patch("tools.tool1_file_reader.pytesseract.image_to_string",
                    return_value=""):   # OCR also returns empty
-            from claim_copilot.tools.tool1_file_reader import read_file
+            from tools.tool1_file_reader import read_file
             with pytest.raises(ValueError, match="No text could be extracted"):
                 read_file(str(pdf_path))

@@ -14,8 +14,8 @@ from pathlib import Path
 
 import pandas as pd
 
-from claim_copilot.config import COVERAGE_JSON, POLICY_CSV
-from claim_copilot.models.schemas import CoverageResponse, CoverageResult, PolicyRecord
+from config import COVERAGE_JSON, POLICY_CSV
+from models.schemas import CoverageResponse, CoverageResult, PolicyRecord
 
 
 # ─── Policy record lookup ──────────────────────────────────────────────────────

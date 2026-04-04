@@ -19,8 +19,8 @@ _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(_PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROJECT_ROOT))
 
-from claim_copilot.config import POLICY_PDF_DIR, VECTOR_DB_DIR  # noqa: E402
-from claim_copilot.tools.tool3_rag_retriever import build_vectorstore  # noqa: E402
+from config import POLICY_PDF_DIR, VECTOR_DB_DIR  # noqa: E402
+from tools.tool3_rag_retriever import build_vectorstore  # noqa: E402
 
 
 def main() -> None:
@@ -58,7 +58,7 @@ def main() -> None:
 
     print("=" * 60)
     print("Done! You can now start the API server.")
-    print("  uvicorn claim_copilot.main:app --reload")
+    print("  uvicorn main:app --reload")
     print("=" * 60)
 
 
