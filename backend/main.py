@@ -24,7 +24,7 @@ app = Flask(__name__)
 
 # ─── Middleware ────────────────────────────────────────────────────────────────
 
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": ["https://infinite-assessment-f8bl.vercel.app", "http://localhost:5173", "http://localhost:8000"]}})
 
 # ─── Routers ──────────────────────────────────────────────────────────────────
 
