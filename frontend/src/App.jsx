@@ -201,7 +201,7 @@ export default function App() {
                 <div className="how-step-body">
                   <div className="how-step-title">File Reading</div>
                   <div className="how-step-desc">OCR and routing via multimodal LLMs depending on document.</div>
-                  <div className="how-tag">gemini-2.5-flash</div>
+                  
                 </div>
               </div>
               <div className="how-step">
@@ -209,7 +209,7 @@ export default function App() {
                 <div className="how-step-body">
                   <div className="how-step-title">Extraction</div>
                   <div className="how-step-desc">Structured data formatting of required fields from the context.</div>
-                  <div className="how-tag">gpt-4o-mini</div>
+                  
                 </div>
               </div>
               <div className="how-step">
@@ -217,7 +217,7 @@ export default function App() {
                 <div className="how-step-body">
                   <div className="how-step-title">RAG Search</div>
                   <div className="how-step-desc">Retrieving specific coverage clauses relevant to the claim.</div>
-                  <div className="how-tag">chromadb</div>
+                  
                 </div>
               </div>
               <div className="how-step">

@@ -33,11 +33,17 @@ from models.schemas import RAGResult, RAGRuleItem
 
 # ─── Embeddings (loaded once at module level) ─────────────────────────────────
 
-_embeddings = HuggingFaceEmbeddings(
-    model_name=EMBEDDING_MODEL,
-    model_kwargs={"device": "cpu"},
-    encode_kwargs={"normalize_embeddings": True},
-)
+_embeddings = None
+
+def get_embeddings():
+    global _embeddings
+    if _embeddings is None:
+        _embeddings = HuggingFaceEmbeddings(
+            model_name=EMBEDDING_MODEL,
+            model_kwargs={"device": "cpu"},
+            encode_kwargs={"normalize_embeddings": True},
+        )
+    return _embeddings
 
 
 # ─── Build / index ─────────────────────────────────────────────────────────────
@@ -102,7 +108,7 @@ def build_vectorstore() -> None:
     sys.stderr.write(f"[RAG] Indexing {len(all_docs)} total chunks into ChromaDB …\n")
     vectorstore = Chroma.from_documents(
         documents=all_docs,
-        embedding=_embeddings,
+        embedding=get_embeddings(),
         persist_directory=str(VECTOR_DB_DIR),
         collection_name="policy_rules",
     )
@@ -131,7 +137,7 @@ def _load_vectorstore() -> Chroma:
 
     return Chroma(
         persist_directory=str(vs_path),
-        embedding_function=_embeddings,
+        embedding_function=get_embeddings(),
         collection_name="policy_rules",
     )
 
