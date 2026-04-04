@@ -4,7 +4,7 @@ import './index.css';
 import './App.css';
 import Chatbot from './Chatbot';
 
-const API = 'http://localhost:8000';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 // Backend returns snake_case keys in checks_passed
 const CHECKS = [
