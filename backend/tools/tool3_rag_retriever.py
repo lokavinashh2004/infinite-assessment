@@ -91,6 +91,8 @@ def build_vectorstore() -> None:
                     # Expecting a list of objects with 'policy_text' or similar
                     if isinstance(data, list):
                         for item in data:
+                            if not isinstance(item, dict):
+                                continue
                             text = item.get("policy_text") or item.get("text") or str(item)
                             policy_id = item.get("policy_id", "unknown")
                             doc = Document(page_content=text, metadata={"source": file_path.name, "policy_id": policy_id})
@@ -112,7 +114,8 @@ def build_vectorstore() -> None:
         persist_directory=str(VECTOR_DB_DIR),
         collection_name="policy_rules",
     )
-    vectorstore.persist()
+    if hasattr(vectorstore, "persist"):
+        vectorstore.persist()
     sys.stderr.write(f"[RAG] Vector store persisted at: {VECTOR_DB_DIR}\n")
 
 
@@ -129,7 +132,7 @@ def _load_vectorstore() -> Chroma:
         FileNotFoundError: If the vector store has not been built yet.
     """
     vs_path = Path(VECTOR_DB_DIR)
-    if not any(vs_path.iterdir()):
+    if not vs_path.exists() or not any(vs_path.iterdir()):
         raise FileNotFoundError(
             f"Vector store not found at '{vs_path}'. "
             "Run 'python scripts/build_vectorstore.py' first."
