@@ -48,7 +48,7 @@ function App() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>ClaimCopilot</h1>
+        <h1>MCP</h1>
         <p>AI-Powered Medical Insurance Claim Processor</p>
       </header>
 
@@ -97,64 +97,65 @@ function App() {
         )}
 
         {result && (
-          <div className="result-card fade-in">
-            <div className="result-header">
-              <h2>Adjudication Decision</h2>
-              <span className={`status-badge ${result.decision?.toLowerCase().replace(' ', '-')}`}>
-                {result.decision}
-              </span>
-            </div>
-            
-            <div className="result-grid">
-              <div className="result-item">
-                <span className="label">Patient Name:</span>
-                <span className="value">{result.patient_name || 'N/A'}</span>
+          <>
+            <div className="result-card fade-in">
+              <div className="result-header">
+                <h2>Adjudication Decision</h2>
+                <span className={`status-badge ${result.decision?.toLowerCase().replace(' ', '-')}`}>
+                  {result.decision}
+                </span>
               </div>
-              <div className="result-item">
-                <span className="label">Policy ID:</span>
-                <span className="value">{result.policy_id || 'N/A'}</span>
-              </div>
-              <div className="result-item">
-                <span className="label">Total Claimed:</span>
-                <span className="value amount">₹{result.total_claimed?.toLocaleString() || '0'}</span>
-              </div>
-              <div className="result-item">
-                <span className="label">Approved Amount:</span>
-                <span className="value amount highlight">₹{result.approved_amount?.toLocaleString() || '0'}</span>
-              </div>
-            </div>
-
-            <div className="result-details">
-              <h3>Reason</h3>
-              <p>{result.reason}</p>
               
-              {result.clauses_cited && result.clauses_cited.length > 0 && (
-                <>
-                  <h3>Clauses Cited</h3>
-                  <div className="tags">
-                    {result.clauses_cited.map((clause, i) => (
-                      <span key={i} className="tag">{clause}</span>
-                    ))}
-                  </div>
-                </>
-              )}
+              <div className="result-grid">
+                <div className="result-item">
+                  <span className="label">Patient Name:</span>
+                  <span className="value">{result.patient_name || 'N/A'}</span>
+                </div>
+                <div className="result-item">
+                  <span className="label">Policy ID:</span>
+                  <span className="value">{result.policy_id || 'N/A'}</span>
+                </div>
+                <div className="result-item">
+                  <span className="label">Total Claimed:</span>
+                  <span className="value amount">₹{result.total_claimed?.toLocaleString() || '0'}</span>
+                </div>
+                <div className="result-item">
+                  <span className="label">Approved Amount:</span>
+                  <span className="value amount highlight">₹{result.approved_amount?.toLocaleString() || '0'}</span>
+                </div>
+              </div>
 
-              {result.checks_passed && result.checks_passed.length > 0 && (
-                <>
-                  <h3>Verification Checks</h3>
-                  <ul className="checks-list">
-                    {result.checks_passed.map((check, i) => (
-                      <li key={i} className="check-pass">✅ {check.replace(/_/g, ' ')}</li>
-                    ))}
-                  </ul>
-                </>
-              )}
+              <div className="result-details">
+                <h3>Reason</h3>
+                <p>{result.reason}</p>
+                
+                {result.clauses_cited && result.clauses_cited.length > 0 && (
+                  <>
+                    <h3>Clauses Cited</h3>
+                    <div className="tags">
+                      {result.clauses_cited.map((clause, i) => (
+                        <span key={i} className="tag">{clause}</span>
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                {result.checks_passed && result.checks_passed.length > 0 && (
+                  <>
+                    <h3>Verification Checks</h3>
+                    <ul className="checks-list">
+                      {result.checks_passed.map((check, i) => (
+                        <li key={i} className="check-pass">✅ {check.replace(/_/g, ' ')}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
+            <Chatbot claimContext={result} />
+          </>
         )}
       </main>
-
-      <Chatbot claimContext={result} />
     </div>
   )
 }

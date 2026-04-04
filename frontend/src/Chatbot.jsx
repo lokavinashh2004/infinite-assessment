@@ -3,9 +3,8 @@ import axios from 'axios';
 import './Chatbot.css';
 
 export default function Chatbot({ claimContext }) {
-  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: "Hi! I'm your Claim Copilot. Ask me anything about your claim or policy rules!" }
+    { role: 'assistant', content: "Hi! I'm your MCP Bot. Ask me anything about your claim or policy rules!" }
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +28,6 @@ export default function Chatbot({ claimContext }) {
         ...prev,
         { role: 'assistant', content: autoMessage }
       ]);
-      setIsOpen(true); // Auto-open the chat when claim is processed
     }
   }, [claimContext]);
 
@@ -75,52 +73,43 @@ export default function Chatbot({ claimContext }) {
   };
 
   return (
-    <div className={`chatbot-container ${isOpen ? 'open' : ''}`}>
-      {!isOpen && (
-        <button className="chat-toggle-btn" onClick={() => setIsOpen(true)}>
-          💬 Ask claim copilot
-        </button>
-      )}
-      
-      {isOpen && (
-        <div className="chat-window">
-          <div className="chat-header">
-            <h3>Claim Copilot Server</h3>
-            <button className="close-btn" onClick={() => setIsOpen(false)}>×</button>
-          </div>
-          
-          <div className="chat-messages">
-            {messages.map((msg, idx) => (
-              <div key={idx} className={`message ${msg.role}`}>
-                <div className="message-bubble">
-                  {renderText(msg.content)}
-                </div>
-              </div>
-            ))}
-            {isLoading && (
-              <div className="message assistant">
-                <div className="message-bubble loading">
-                  <div className="dot"></div>
-                  <div className="dot"></div>
-                  <div className="dot"></div>
-                </div>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
-          </div>
-          
-          <form className="chat-input-form" onSubmit={handleSendMessage}>
-            <input 
-              type="text" 
-              placeholder="Ask about your policy or claim..." 
-              value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
-              disabled={isLoading}
-            />
-            <button type="submit" disabled={!inputMessage.trim() || isLoading}>Send</button>
-          </form>
+    <div className="chatbot-card fade-in">
+      <div className="chat-window">
+        <div className="chat-header">
+          <h3>MCP</h3>
         </div>
-      )}
+        
+        <div className="chat-messages">
+          {messages.map((msg, idx) => (
+            <div key={idx} className={`message ${msg.role}`}>
+              <div className="message-bubble">
+                {renderText(msg.content)}
+              </div>
+            </div>
+          ))}
+          {isLoading && (
+            <div className="message assistant">
+              <div className="message-bubble loading">
+                <div className="dot"></div>
+                <div className="dot"></div>
+                <div className="dot :dot"></div>
+              </div>
+            </div>
+          )}
+          <div ref={messagesEndRef} />
+        </div>
+        
+        <form className="chat-input-form" onSubmit={handleSendMessage}>
+          <input 
+            type="text" 
+            placeholder="Ask about your policy or claim..." 
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
+            disabled={isLoading}
+          />
+          <button type="submit" disabled={!inputMessage.trim() || isLoading}>Send</button>
+        </form>
+      </div>
     </div>
   );
 }
