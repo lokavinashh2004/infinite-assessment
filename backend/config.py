@@ -45,6 +45,9 @@ POLICY_PDF_DIR: Path = BASE_DIR / "policies"
 VECTOR_DB_DIR: Path = DATA_DIR / "vectorstore"
 """Directory where the ChromaDB persistent vector store is saved."""
 
+PAST_RECORDS_DIR: Path = BASE_DIR / "Past records"
+"""Directory where processed claim results (and optionally images) are archived."""
+
 # ─── RAG settings ──────────────────────────────────────────────────────────────
 
 EMBEDDING_MODEL: str = "sentence-transformers/all-MiniLM-L6-v2"
@@ -61,5 +64,5 @@ RAG_TOP_K: int = 4
 
 # ─── Ensure required directories exist ─────────────────────────────────────────
 
-for _dir in (DATA_DIR, POLICY_PDF_DIR, VECTOR_DB_DIR):
+for _dir in (DATA_DIR, POLICY_PDF_DIR, VECTOR_DB_DIR, PAST_RECORDS_DIR):
     _dir.mkdir(parents=True, exist_ok=True)

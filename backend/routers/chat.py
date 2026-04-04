@@ -4,6 +4,7 @@ chat.py — Flask Blueprint for chatbot endpoints.
 
 from __future__ import annotations
 
+import json
 from flask import Blueprint, request, jsonify
 from openai import OpenAI
 
@@ -20,9 +21,10 @@ def chat():
     and returns an AI chatbot response.
     """
     data = request.json or {}
-    user_message = data.get("message", "")
-    claim_context = data.get("context", {}) # Option to pass the processed claim result
-    chat_history = data.get("history", []) # List of previous messages
+    user_message = data.get("message") or ""
+    # Safely get context (dict) and history (list)
+    claim_context = data.get("context") if isinstance(data.get("context"), dict) else {}
+    chat_history = data.get("history") if isinstance(data.get("history"), list) else []
 
     if not user_message:
         return jsonify({"detail": "Message is required"}), 400
@@ -38,7 +40,6 @@ def chat():
         rag_context = "(Could not retrieve policy guidelines from vector store)"
 
     # 2. Formulate system prompt
-    import json
     # Extract details from the claim context (FinalResponse)
     claim_dict = claim_context.get("claim_details", {}) if isinstance(claim_context, dict) else {}
     policy_dict = claim_context.get("policy_details", {}) if isinstance(claim_context, dict) else {}
