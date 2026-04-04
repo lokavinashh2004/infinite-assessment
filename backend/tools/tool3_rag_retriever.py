@@ -18,7 +18,7 @@ from typing import Any
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 
 from config import (
@@ -44,22 +44,17 @@ _embeddings = HuggingFaceEmbeddings(
 
 def build_vectorstore() -> None:
     """
-    Index all PDF files found in POLICY_PDF_DIR and persist the vector store.
-
-    Uses RecursiveCharacterTextSplitter with the configured chunk size and
-    overlap.  Existing embeddings are replaced each time this function runs.
-
-    Raises:
-        FileNotFoundError: If POLICY_PDF_DIR does not exist.
-        RuntimeError: If no PDF pages could be extracted from any file.
+    Index all PDF and JSON files found in POLICY_PDF_DIR and persist the vector store.
     """
     pdf_dir = Path(POLICY_PDF_DIR)
     if not pdf_dir.exists():
-        raise FileNotFoundError(f"Policy PDF directory not found: {pdf_dir}")
+        raise FileNotFoundError(f"Policy directory not found: {pdf_dir}")
 
-    pdf_files = sorted(pdf_dir.glob("*.pdf"))
-    if not pdf_files:
-        print(f"[RAG] No PDF files found in {pdf_dir}. Vector store not built.")
+    # Support PDF and JSON files
+    files = sorted(list(pdf_dir.glob("*.pdf")) + list(pdf_dir.glob("*.json")))
+    import sys
+    if not files:
+        sys.stderr.write(f"[RAG] No policy files found in {pdf_dir}. Vector store not built.\n")
         return
 
     splitter = RecursiveCharacterTextSplitter(
@@ -70,28 +65,41 @@ def build_vectorstore() -> None:
 
     all_docs: list[Any] = []
 
-    for pdf_path in pdf_files:
-        print(f"[RAG] Loading: {pdf_path.name}")
-        try:
-            loader = PyPDFLoader(str(pdf_path))
-            pages = loader.load()
-        except Exception as exc:
-            print(f"[RAG] WARNING: Could not load '{pdf_path.name}': {exc}")
-            continue
+    import json
+    from langchain.docstore.document import Document
 
-        chunks = splitter.split_documents(pages)
-        # Stamp source filename into metadata for retrieval provenance
-        for chunk in chunks:
-            chunk.metadata["source"] = pdf_path.name
-        all_docs.extend(chunks)
-        print(f"[RAG]   → {len(chunks)} chunks created from {len(pages)} pages")
+    for file_path in files:
+        sys.stderr.write(f"[RAG] Loading: {file_path.name}\n")
+        ext = file_path.suffix.lower()
+        try:
+            if ext == ".pdf":
+                loader = PyPDFLoader(str(file_path))
+                pages = loader.load()
+                chunks = splitter.split_documents(pages)
+                for chunk in chunks:
+                    chunk.metadata["source"] = file_path.name
+                all_docs.extend(chunks)
+            elif ext == ".json":
+                with open(file_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    # Expecting a list of objects with 'policy_text' or similar
+                    if isinstance(data, list):
+                        for item in data:
+                            text = item.get("policy_text") or item.get("text") or str(item)
+                            policy_id = item.get("policy_id", "unknown")
+                            doc = Document(page_content=text, metadata={"source": file_path.name, "policy_id": policy_id})
+                            chunks = splitter.split_documents([doc])
+                            all_docs.extend(chunks)
+        except Exception as exc:
+            sys.stderr.write(f"[RAG] WARNING: Could not load '{file_path.name}': {exc}\n")
+            continue
 
     if not all_docs:
         raise RuntimeError(
-            "No document chunks were produced. Check that the PDF files are readable."
+            "No document chunks were produced. Check that the files are readable."
         )
 
-    print(f"[RAG] Indexing {len(all_docs)} total chunks into ChromaDB …")
+    sys.stderr.write(f"[RAG] Indexing {len(all_docs)} total chunks into ChromaDB …\n")
     vectorstore = Chroma.from_documents(
         documents=all_docs,
         embedding=_embeddings,
@@ -99,7 +107,7 @@ def build_vectorstore() -> None:
         collection_name="policy_rules",
     )
     vectorstore.persist()
-    print(f"[RAG] Vector store persisted at: {VECTOR_DB_DIR}")
+    sys.stderr.write(f"[RAG] Vector store persisted at: {VECTOR_DB_DIR}\n")
 
 
 # ─── Retrieve ──────────────────────────────────────────────────────────────────

@@ -15,7 +15,7 @@ from pathlib import Path
 from flask import Blueprint, request, jsonify
 from werkzeug.utils import secure_filename
 
-from mcp.tool_router import run_pipeline
+from pipeline.tool_router import run_pipeline
 
 claims_bp = Blueprint("claims", __name__, url_prefix="/claims")
 

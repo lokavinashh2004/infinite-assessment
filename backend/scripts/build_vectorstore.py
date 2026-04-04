@@ -32,20 +32,20 @@ def main() -> None:
     print("=" * 60)
     print("ClaimCopilot — Policy Vector Store Builder")
     print("=" * 60)
-    print(f"PDF source directory : {POLICY_PDF_DIR}")
-    print(f"Vector store path    : {VECTOR_DB_DIR}")
+    print(f"Policy source directory : {POLICY_PDF_DIR}")
+    print(f"Vector store path       : {VECTOR_DB_DIR}")
     print("-" * 60)
 
-    pdf_files = list(Path(POLICY_PDF_DIR).glob("*.pdf"))
-    if not pdf_files:
+    files = list(Path(POLICY_PDF_DIR).glob("*.pdf")) + list(Path(POLICY_PDF_DIR).glob("*.json"))
+    if not files:
         print(
-            "\n[WARNING] No PDF files found in the policy_pdfs/ directory.\n"
-            "Place your policy PDF documents there, then re-run this script.\n"
+            "\n[WARNING] No PDF or JSON files found in the policies/ directory.\n"
+            "Place your policy documents there, then re-run this script.\n"
         )
         sys.exit(0)
 
-    print(f"Found {len(pdf_files)} PDF file(s):")
-    for f in pdf_files:
+    print(f"Found {len(files)} policy file(s):")
+    for f in files:
         print(f"  • {f.name}")
     print()
 
@@ -58,7 +58,6 @@ def main() -> None:
 
     print("=" * 60)
     print("Done! You can now start the API server.")
-    print("  uvicorn main:app --reload")
     print("=" * 60)
 
 

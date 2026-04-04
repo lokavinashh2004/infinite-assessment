@@ -14,6 +14,7 @@ Pillow
 # ─── RAG stack ────────────────────────────────────────────────────────────────
 langchain
 langchain-community
+langchain-huggingface
 chromadb
 sentence-transformers
 
@@ -33,3 +34,4 @@ pytest-asyncio
 # ─── Transitive deps ──────────────────────────────────────────────────────────
 httpx
 anyio
+mcp[cli]

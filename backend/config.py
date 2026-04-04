@@ -39,8 +39,8 @@ POLICY_CSV: Path = DATA_DIR / "policies.csv"
 COVERAGE_JSON: Path = DATA_DIR / "coverage_rules.json"
 """JSON file containing coverage clause definitions."""
 
-POLICY_PDF_DIR: Path = DATA_DIR / "policy_pdfs"
-"""Directory where users place policy PDF documents for RAG indexing."""
+POLICY_PDF_DIR: Path = BASE_DIR / "policies"
+"""Directory where users place policy documents for RAG indexing."""
 
 VECTOR_DB_DIR: Path = DATA_DIR / "vectorstore"
 """Directory where the ChromaDB persistent vector store is saved."""
