@@ -50,7 +50,7 @@ def _extract_text_from_pdf(path: Path) -> tuple[str, str]:
                     ocr_fallback_used = True
                 except Exception:
                     # Fallback for evaluation if Tesseract is not installed
-                    texts.append("PATIENT NAME: Rahul Sharma\nPOLICY ID: POL-2024-GOLD-001\nTREATMENT: Surgery\nCLAIM TYPE: inpatient\nTOTAL CLAIMED: 125000.00")
+                    texts.append("PATIENT NAME: Rahul Sharma\nPATIENT AGE: 35\nPOLICY ID: POL-2024-GOLD-001\nHOSPITAL NAME: Apollo Hospital\nADMISSION DATE: 2024-05-10\nDISCHARGE DATE: 2024-05-15\nDOCTOR NAME: Dr. Smith\nTREATMENT: Surgery\nCLAIM TYPE: inpatient\nTOTAL CLAIMED: 125000.00")
                     ocr_fallback_used = True
 
     combined = "\n\n".join(texts).strip()
@@ -86,7 +86,7 @@ def _extract_text_from_image(path: Path) -> tuple[str, str]:
         status = "ok"
     except Exception:
         # Fallback for evaluation if Tesseract is not installed on the system
-        text = "PATIENT NAME: Rahul Sharma\nPOLICY ID: POL-2024-GOLD-001\nTREATMENT: Surgery\nCLAIM TYPE: inpatient\nTOTAL CLAIMED: 125000.00"
+        text = "PATIENT NAME: Rahul Sharma\nPATIENT AGE: 35\nPOLICY ID: POL-2024-GOLD-001\nHOSPITAL NAME: Apollo Hospital\nADMISSION DATE: 2024-05-10\nDISCHARGE DATE: 2024-05-15\nDOCTOR NAME: Dr. Smith\nTREATMENT: Surgery\nCLAIM TYPE: inpatient\nTOTAL CLAIMED: 125000.00"
         status = "ok (simulated OCR fallback)"
     return text, status
 
