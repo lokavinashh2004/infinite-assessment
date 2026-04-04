@@ -16,7 +16,8 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Install Python dependencies, and add gunicorn for production serving
-RUN pip install --no-cache-dir -r requirements.txt gunicorn
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir gunicorn
 
 # Copy the rest of the backend files
 COPY . .
