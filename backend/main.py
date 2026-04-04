@@ -33,6 +33,11 @@ app.register_blueprint(chat_bp)
 
 # ─── Health check ─────────────────────────────────────────────────────────────
 
+@app.route("/", methods=["GET"])
+def home():
+    """Root endpoint for status verification."""
+    return "Backend running", 200
+
 @app.route("/health", methods=["GET"])
 def health_check():
     """
