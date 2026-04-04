@@ -13,6 +13,7 @@ Public API:
 from __future__ import annotations
 
 import os
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -31,19 +32,21 @@ from config import (
 )
 from models.schemas import RAGResult, RAGRuleItem
 
-# ─── Embeddings (loaded once at module level) ─────────────────────────────────
+# ─── Embeddings (Lazy Loaded) ──────────────────────────────────────────────────
 
-_embeddings = None
+_embeddings_cache: HuggingFaceEmbeddings | None = None
 
-def get_embeddings():
-    global _embeddings
-    if _embeddings is None:
-        _embeddings = HuggingFaceEmbeddings(
+def get_embeddings() -> HuggingFaceEmbeddings:
+    """Lazy initialization of the HuggingFace embedding model."""
+    global _embeddings_cache
+    if _embeddings_cache is None:
+        sys.stderr.write(f"[RAG] Initializing embedding model: {EMBEDDING_MODEL} ...\n")
+        _embeddings_cache = HuggingFaceEmbeddings(
             model_name=EMBEDDING_MODEL,
             model_kwargs={"device": "cpu"},
             encode_kwargs={"normalize_embeddings": True},
         )
-    return _embeddings
+    return _embeddings_cache
 
 
 # ─── Build / index ─────────────────────────────────────────────────────────────
