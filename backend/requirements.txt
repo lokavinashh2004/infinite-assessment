@@ -1,7 +1,7 @@
 # ─── Web framework ────────────────────────────────────────────────────────────
-fastapi
-uvicorn[standard]
-python-multipart
+flask
+flask-cors
+werkzeug
 
 # ─── Groq API ─────────────────────────────────────────────────────────────────
 groq
