@@ -15,13 +15,13 @@ from dotenv import load_dotenv
 # Load .env into environment as early as possible so all imports see the vars.
 load_dotenv()
 
-# ─── Groq ──────────────────────────────────────────────────────────────────────
+# ─── OpenRouter ──────────────────────────────────────────────────────────────
 
-GROQ_API_KEY: str = os.environ.get("GROQ_API_KEY", "")
-"""Groq API key.  Set via GROQ_API_KEY in .env or the OS environment."""
+OPENROUTER_API_KEY: str = os.environ.get("OPENROUTER_API_KEY", "")
+"""OpenRouter API key. Set via OPENROUTER_API_KEY in .env"""
 
-GROQ_MODEL: str = "llama3-70b-8192"
-"""The Groq model used for data extraction (Tool 2)."""
+OPENROUTER_MODEL: str = "qwen/qwen-plus"
+"""The OpenRouter model used for data extraction."""
 
 # ─── Project root ──────────────────────────────────────────────────────────────
 

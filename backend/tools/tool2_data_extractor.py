@@ -1,7 +1,7 @@
 """
-tool2_data_extractor.py — Tool 2: Structured claim data extraction via Groq AI.
+tool2_data_extractor.py — Tool 2: Structured claim data extraction via OpenRouter AI.
 
-Sends raw document text to the Groq API with a strict extraction
+Sends raw document text to the OpenRouter API with a strict extraction
 prompt and parses the JSON response into an ExtractedClaim Pydantic model.
 """
 
@@ -10,13 +10,13 @@ from __future__ import annotations
 import json
 import re
 
-from groq import Groq
+from openai import OpenAI
 
-from config import GROQ_API_KEY, GROQ_MODEL
+from config import OPENROUTER_API_KEY, OPENROUTER_MODEL
 from models.schemas import ExtractedClaim
 
-# Initialise the Groq client once at module level (no global mutable state).
-_client = Groq(api_key=GROQ_API_KEY)
+# Initialise the OpenAI client (for OpenRouter) once at module level
+_client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=OPENROUTER_API_KEY)
 
 # ─── Extraction prompt ─────────────────────────────────────────────────────────
 
@@ -63,10 +63,10 @@ def _strip_markdown_fences(text: str) -> str:
     """
     Remove markdown code fences (``` or ```json) from a string.
 
-    Groq occasionally wraps JSON in fences despite instructions.
+    LLMs occasionally wrap JSON in fences despite instructions.
 
     Args:
-        text: Raw string from Groq API response.
+        text: Raw string from API response.
 
     Returns:
         Cleaned string with fences removed.
@@ -80,7 +80,7 @@ def _strip_markdown_fences(text: str) -> str:
 
 def extract_claim_data(raw_text: str) -> ExtractedClaim:
     """
-    Send raw claim document text to Groq and parse the structured response.
+    Send raw claim document text to OpenRouter and parse the structured response.
 
     Args:
         raw_text: Plain text extracted from the claim document by Tool 1.
@@ -89,9 +89,8 @@ def extract_claim_data(raw_text: str) -> ExtractedClaim:
         ExtractedClaim Pydantic model populated with the extracted fields.
 
     Raises:
-        ValueError: If Groq returns an unparseable response or validation fails.
-        Exception: On Groq API failures (propagated as-is for the
-            caller to handle or log).
+        ValueError: If AI returns an unparseable response or validation fails.
+        Exception: On API failures (propagated as-is for the caller to handle).
     """
     if not raw_text or not raw_text.strip():
         raise ValueError("raw_text must not be empty; Tool 1 should have validated this.")
@@ -100,16 +99,15 @@ def extract_claim_data(raw_text: str) -> ExtractedClaim:
 
     try:
         chat_completion = _client.chat.completions.create(
-            model=GROQ_MODEL,
+            model=OPENROUTER_MODEL,
             max_tokens=2048,
             messages=[
                 {"role": "system", "content": _EXTRACTION_SYSTEM_PROMPT},
                 {"role": "user", "content": prompt}
-            ],
-            response_format={"type": "json_object"},
+            ]
         )
     except Exception as exc:
-        raise RuntimeError(f"Groq API call failed during claim extraction: {exc}") from exc
+        raise RuntimeError(f"OpenRouter API call failed during claim extraction: {exc}") from exc
 
     raw_response: str = chat_completion.choices[0].message.content or ""
 
