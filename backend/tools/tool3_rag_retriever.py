@@ -12,10 +12,13 @@ Public API:
 
 from __future__ import annotations
 
+import logging
 import os
 import sys
 from pathlib import Path
 from typing import Any
+
+log = logging.getLogger("claimcopilot.rag")
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
@@ -72,7 +75,7 @@ def get_embeddings() -> OpenRouterEmbeddings:
     """Lazy initialization of the OpenRouter embedding client."""
     global _embeddings_cache
     if _embeddings_cache is None:
-        sys.stderr.write("[RAG] Initializing OpenRouter embeddings (text-embedding-3-small) ...\n")
+        log.info("Initializing OpenRouter embeddings (text-embedding-3-small) …")
         _embeddings_cache = OpenRouterEmbeddings()
     return _embeddings_cache
 
@@ -90,9 +93,8 @@ def build_vectorstore() -> None:
 
     # Support PDF and JSON files
     files = sorted(list(pdf_dir.glob("*.pdf")) + list(pdf_dir.glob("*.json")))
-    import sys
     if not files:
-        sys.stderr.write(f"[RAG] No policy files found in {pdf_dir}. Vector store not built.\n")
+        log.warning("No policy files found in %s — vector store not built", pdf_dir)
         return
 
     splitter = RecursiveCharacterTextSplitter(
@@ -107,7 +109,7 @@ def build_vectorstore() -> None:
     from langchain_core.documents import Document
 
     for file_path in files:
-        sys.stderr.write(f"[RAG] Loading: {file_path.name}\n")
+        log.info("Loading policy file: %s", file_path.name)
         ext = file_path.suffix.lower()
         try:
             if ext == ".pdf":
@@ -131,7 +133,7 @@ def build_vectorstore() -> None:
                             chunks = splitter.split_documents([doc])
                             all_docs.extend(chunks)
         except Exception as exc:
-            sys.stderr.write(f"[RAG] WARNING: Could not load '{file_path.name}': {exc}\n")
+            log.warning("Could not load '%s': %s", file_path.name, exc)
             continue
 
     if not all_docs:
@@ -139,7 +141,7 @@ def build_vectorstore() -> None:
             "No document chunks were produced. Check that the files are readable."
         )
 
-    sys.stderr.write(f"[RAG] Indexing {len(all_docs)} total chunks into ChromaDB …\n")
+    log.info("Indexing %d chunks into ChromaDB …", len(all_docs))
     vectorstore = Chroma.from_documents(
         documents=all_docs,
         embedding=get_embeddings(),
@@ -148,7 +150,7 @@ def build_vectorstore() -> None:
     )
     if hasattr(vectorstore, "persist"):
         vectorstore.persist()
-    sys.stderr.write(f"[RAG] Vector store persisted at: {VECTOR_DB_DIR}\n")
+    log.info("Vector store persisted at: %s", VECTOR_DB_DIR)
 
 
 # ─── Retrieve ──────────────────────────────────────────────────────────────────
