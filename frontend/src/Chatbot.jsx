@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Chatbot.css';
 
-const API = import.meta.env.VITE_API_URL || 'https://infinite-assessment.onrender.com';
+const API = import.meta.env.VITE_API_URL || 'https://infinite-assessment-1.onrender.com';
 const now = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
 export default function Chatbot({ claimContext }) {

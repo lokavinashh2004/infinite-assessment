@@ -4,7 +4,7 @@ import './index.css';
 import './App.css';
 import Chatbot from './Chatbot';
 
-const API = import.meta.env.VITE_API_URL || 'https://infinite-assessment.onrender.com';
+const API = import.meta.env.VITE_API_URL || 'https://infinite-assessment-1.onrender.com';
 
 // Backend returns snake_case keys in checks_passed
 const CHECKS = [
