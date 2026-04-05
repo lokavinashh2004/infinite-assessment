@@ -20,7 +20,7 @@ from typing import Any
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 
 from config import (
     CHUNK_OVERLAP,
@@ -32,9 +32,10 @@ from config import (
 )
 from models.schemas import RAGResult, RAGRuleItem
 
-# ─── Embeddings (Lazy Loaded) ──────────────────────────────────────────────────
+# ─── Cache / Lazy Loading ──────────────────────────────────────────────────────
 
 _embeddings_cache: HuggingFaceEmbeddings | None = None
+_vectorstore_cache: Chroma | None = None
 
 def get_embeddings() -> HuggingFaceEmbeddings:
     """Lazy initialization of the HuggingFace embedding model."""
@@ -126,14 +127,12 @@ def build_vectorstore() -> None:
 
 def _load_vectorstore() -> Chroma:
     """
-    Load the persisted ChromaDB vector store from disk.
-
-    Returns:
-        Chroma vector store instance ready for similarity search.
-
-    Raises:
-        FileNotFoundError: If the vector store has not been built yet.
+    Load or return the cached ChromaDB vector store.
     """
+    global _vectorstore_cache
+    if _vectorstore_cache is not None:
+        return _vectorstore_cache
+
     vs_path = Path(VECTOR_DB_DIR)
     if not vs_path.exists() or not any(vs_path.iterdir()):
         raise FileNotFoundError(
@@ -141,11 +140,12 @@ def _load_vectorstore() -> Chroma:
             "Run 'python scripts/build_vectorstore.py' first."
         )
 
-    return Chroma(
+    _vectorstore_cache = Chroma(
         persist_directory=str(vs_path),
         embedding_function=get_embeddings(),
         collection_name="policy_rules",
     )
+    return _vectorstore_cache
 
 
 def retrieve_policy_rules(
@@ -186,9 +186,16 @@ def retrieve_policy_rules(
     rules: list[RAGRuleItem] = []
     for rank, (doc, _score) in enumerate(docs_with_scores, start=1):
         source = doc.metadata.get("source", "unknown")
+        # Ensure page_content is a string even if None was returned by previous buggy indexes
+        text_content = (doc.page_content or "").strip()
+        
+        # Only add non-empty rules
+        if not text_content:
+            continue
+            
         rules.append(
             RAGRuleItem(
-                text=doc.page_content.strip(),
+                text=text_content,
                 source=source,
                 relevance_rank=rank,
             )

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "claimcopilot": {
+      "command": "python",
+      "args": ["C:/Users/Hemanth/OneDrive/Desktop/MCP/infinite-assessment/backend/mcp_server.py"],
+      "env": {
+        "OPENROUTER_API_KEY": "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"
+      }
+    }
+  }
+}

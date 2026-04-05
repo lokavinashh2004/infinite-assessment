@@ -1,0 +1,302 @@
+[
+  {
+    "claim_id": "F001",
+    "patient_name": "Rahul Singh",
+    "age": 67,
+    "disease": "Spine Surgery",
+    "claim_amount": 784637,
+    "hospital": "Apollo Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Treatment not matching diagnosis"
+  },
+  {
+    "claim_id": "F002",
+    "patient_name": "Anil Verma",
+    "age": 35,
+    "disease": "Accident Surgery",
+    "claim_amount": 964004,
+    "hospital": "Global Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Treatment not matching diagnosis"
+  },
+  {
+    "claim_id": "F003",
+    "patient_name": "Rohit Mehta",
+    "age": 54,
+    "disease": "Cancer Treatment",
+    "claim_amount": 691304,
+    "hospital": "AIIMS",
+    "fraud_flag": true,
+    "fraud_reason": "Duplicate claim detected for same treatment and date"
+  },
+  {
+    "claim_id": "F004",
+    "patient_name": "Anil Verma",
+    "age": 54,
+    "disease": "Kidney Transplant",
+    "claim_amount": 81047,
+    "hospital": "Apollo Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Duplicate claim detected for same treatment and date"
+  },
+  {
+    "claim_id": "F005",
+    "patient_name": "Sneha Kapoor",
+    "age": 44,
+    "disease": "Heart Surgery",
+    "claim_amount": 498762,
+    "hospital": "Global Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Duplicate claim detected for same treatment and date"
+  },
+  {
+    "claim_id": "F006",
+    "patient_name": "Amit Shah",
+    "age": 34,
+    "disease": "Accident Surgery",
+    "claim_amount": 652278,
+    "hospital": "Apollo Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Multiple claims from different hospitals for same issue"
+  },
+  {
+    "claim_id": "F007",
+    "patient_name": "Kavita Joshi",
+    "age": 33,
+    "disease": "Kidney Transplant",
+    "claim_amount": 258659,
+    "hospital": "Fortis Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Treatment not matching diagnosis"
+  },
+  {
+    "claim_id": "F008",
+    "patient_name": "Anil Verma",
+    "age": 27,
+    "disease": "Kidney Transplant",
+    "claim_amount": 913026,
+    "hospital": "AIIMS",
+    "fraud_flag": true,
+    "fraud_reason": "Fake hospital bills submitted"
+  },
+  {
+    "claim_id": "F009",
+    "patient_name": "Amit Shah",
+    "age": 36,
+    "disease": "Cancer Treatment",
+    "claim_amount": 358804,
+    "hospital": "Apollo Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Claim amount unusually high compared to standard cost"
+  },
+  {
+    "claim_id": "F010",
+    "patient_name": "Nikhil Jain",
+    "age": 72,
+    "disease": "Kidney Transplant",
+    "claim_amount": 529810,
+    "hospital": "Global Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Multiple claims from different hospitals for same issue"
+  },
+  {
+    "claim_id": "F011",
+    "patient_name": "Anil Verma",
+    "age": 53,
+    "disease": "Spine Surgery",
+    "claim_amount": 792888,
+    "hospital": "Fortis Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Duplicate claim detected for same treatment and date"
+  },
+  {
+    "claim_id": "F012",
+    "patient_name": "Amit Shah",
+    "age": 69,
+    "disease": "Accident Surgery",
+    "claim_amount": 838795,
+    "hospital": "Fortis Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Multiple claims from different hospitals for same issue"
+  },
+  {
+    "claim_id": "F013",
+    "patient_name": "Suresh Patel",
+    "age": 67,
+    "disease": "Heart Surgery",
+    "claim_amount": 805377,
+    "hospital": "Apollo Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Fake hospital bills submitted"
+  },
+  {
+    "claim_id": "F014",
+    "patient_name": "Rohit Mehta",
+    "age": 35,
+    "disease": "Cancer Treatment",
+    "claim_amount": 325780,
+    "hospital": "Apollo Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Duplicate claim detected for same treatment and date"
+  },
+  {
+    "claim_id": "F015",
+    "patient_name": "Pooja Sharma",
+    "age": 64,
+    "disease": "Knee Replacement",
+    "claim_amount": 87436,
+    "hospital": "Global Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Treatment not matching diagnosis"
+  },
+  {
+    "claim_id": "F016",
+    "patient_name": "Rohit Mehta",
+    "age": 51,
+    "disease": "Heart Surgery",
+    "claim_amount": 581262,
+    "hospital": "AIIMS",
+    "fraud_flag": true,
+    "fraud_reason": "Duplicate claim detected for same treatment and date"
+  },
+  {
+    "claim_id": "F017",
+    "patient_name": "Suresh Patel",
+    "age": 60,
+    "disease": "Spine Surgery",
+    "claim_amount": 926385,
+    "hospital": "Apollo Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Duplicate claim detected for same treatment and date"
+  },
+  {
+    "claim_id": "F018",
+    "patient_name": "Amit Shah",
+    "age": 48,
+    "disease": "Cancer Treatment",
+    "claim_amount": 928750,
+    "hospital": "Ruby Hall Clinic",
+    "fraud_flag": true,
+    "fraud_reason": "Treatment not matching diagnosis"
+  },
+  {
+    "claim_id": "F019",
+    "patient_name": "Anil Verma",
+    "age": 38,
+    "disease": "Spine Surgery",
+    "claim_amount": 979190,
+    "hospital": "Ruby Hall Clinic",
+    "fraud_flag": true,
+    "fraud_reason": "Fake hospital bills submitted"
+  },
+  {
+    "claim_id": "F020",
+    "patient_name": "Pooja Sharma",
+    "age": 28,
+    "disease": "Knee Replacement",
+    "claim_amount": 754639,
+    "hospital": "AIIMS",
+    "fraud_flag": true,
+    "fraud_reason": "Multiple claims from different hospitals for same issue"
+  },
+  {
+    "claim_id": "F021",
+    "patient_name": "Nikhil Jain",
+    "age": 36,
+    "disease": "Accident Surgery",
+    "claim_amount": 396670,
+    "hospital": "Global Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Duplicate claim detected for same treatment and date"
+  },
+  {
+    "claim_id": "F022",
+    "patient_name": "Pooja Sharma",
+    "age": 75,
+    "disease": "Accident Surgery",
+    "claim_amount": 140275,
+    "hospital": "Ruby Hall Clinic",
+    "fraud_flag": true,
+    "fraud_reason": "Claim amount unusually high compared to standard cost"
+  },
+  {
+    "claim_id": "F023",
+    "patient_name": "Sneha Kapoor",
+    "age": 49,
+    "disease": "Spine Surgery",
+    "claim_amount": 834571,
+    "hospital": "AIIMS",
+    "fraud_flag": true,
+    "fraud_reason": "Treatment not matching diagnosis"
+  },
+  {
+    "claim_id": "F024",
+    "patient_name": "Rahul Singh",
+    "age": 74,
+    "disease": "Cancer Treatment",
+    "claim_amount": 162888,
+    "hospital": "Apollo Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Multiple claims from different hospitals for same issue"
+  },
+  {
+    "claim_id": "F025",
+    "patient_name": "Anil Verma",
+    "age": 36,
+    "disease": "Heart Surgery",
+    "claim_amount": 103003,
+    "hospital": "Fortis Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Treatment not matching diagnosis"
+  },
+  {
+    "claim_id": "F026",
+    "patient_name": "Nikhil Jain",
+    "age": 75,
+    "disease": "Kidney Transplant",
+    "claim_amount": 956748,
+    "hospital": "Fortis Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Duplicate claim detected for same treatment and date"
+  },
+  {
+    "claim_id": "F027",
+    "patient_name": "Kavita Joshi",
+    "age": 41,
+    "disease": "Heart Surgery",
+    "claim_amount": 474576,
+    "hospital": "Fortis Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Treatment not matching diagnosis"
+  },
+  {
+    "claim_id": "F028",
+    "patient_name": "Kavita Joshi",
+    "age": 25,
+    "disease": "Accident Surgery",
+    "claim_amount": 509029,
+    "hospital": "Fortis Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Treatment not matching diagnosis"
+  },
+  {
+    "claim_id": "F029",
+    "patient_name": "Nikhil Jain",
+    "age": 54,
+    "disease": "Heart Surgery",
+    "claim_amount": 272988,
+    "hospital": "AIIMS",
+    "fraud_flag": true,
+    "fraud_reason": "Claim amount unusually high compared to standard cost"
+  },
+  {
+    "claim_id": "F030",
+    "patient_name": "Vikas Gupta",
+    "age": 30,
+    "disease": "Spine Surgery",
+    "claim_amount": 767843,
+    "hospital": "Global Hospital",
+    "fraud_flag": true,
+    "fraud_reason": "Multiple claims from different hospitals for same issue"
+  }
+]

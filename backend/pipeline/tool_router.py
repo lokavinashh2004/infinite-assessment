@@ -163,9 +163,11 @@ def run_pipeline(file_path: str) -> dict:
         total_claimed=claim.total_amount,
         execution_log=execution_log,
         rag_rules_used=rag_rules_used,
-        claim_details=claim.model_dump() if hasattr(claim, 'model_dump') else {},
-        policy_details=policy_record.model_dump() if hasattr(policy_record, 'model_dump') else {},
+        claim_details=claim.model_dump() if hasattr(claim, 'model_dump') else (claim.dict() if hasattr(claim, 'dict') else {}),
+        policy_details=policy_record.model_dump() if hasattr(policy_record, 'model_dump') else (policy_record.dict() if hasattr(policy_record, 'dict') else {}),
         timestamp=decision.timestamp,
     )
 
-    return final.model_dump()
+    if hasattr(final, 'model_dump'):
+        return final.model_dump(mode='json')
+    return final.dict()

@@ -1,147 +1,95 @@
 """
-tool1_file_reader.py — Tool 1: Document ingestion.
+tool1_file_reader.py — Tool 1: Document ingestion using multimodal LLM OCR.
 
 Accepts a file path (PDF or image) and returns extracted plain text.
-- PDFs: tries pdfplumber first; falls back to pytesseract OCR if no text layer.
-- Images: uses pytesseract with upscaling for small images.
+Uses pdfplumber for digital PDFs and Gemini 2.0 Flash (via OpenRouter) as a 
+high-performance multimodal OCR for scanned documents and images.
 """
 
 from __future__ import annotations
 
 import os
+import base64
 from pathlib import Path
+from io import BytesIO
 from typing import Any
 
 import pdfplumber
-import pytesseract
 from PIL import Image
+from openai import OpenAI
 
 from models.schemas import FileReadResult
+from config import OPENROUTER_API_KEY, OPENROUTER_MODEL
+
+# Initialise multimodal client
+_client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=OPENROUTER_API_KEY)
 
 # Supported file-type groups
 _PDF_EXTS = {".pdf"}
 _IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".tiff", ".tif"}
 
-# Minimum dimension (px) below which an image is upscaled before OCR
-_MIN_DIM_FOR_UPSCALE = 800
-_UPSCALE_FACTOR = 2
+def _encode_image(image: Image.Image) -> str:
+    """Helper to convert PIL Image to base64 string."""
+    buffered = BytesIO()
+    image.save(buffered, format="JPEG", quality=85)
+    return base64.b64encode(buffered.getvalue()).decode()
 
+def _ocr_with_gemini(images: list[Image.Image]) -> str:
+    """Uses Gemini 2.0 Flash via OpenRouter to perform high-accuracy OCR."""
+    if not images:
+        return ""
+    
+    # Prepare multimodal message
+    content = [{"type": "text", "text": "Transcribe all text from these document pages accurately. Return ONLY the transcribed text."}]
+    for img in images[:5]: # Limit to first 5 pages for speed/limit
+        b64 = _encode_image(img)
+        content.append({
+            "type": "image_url",
+            "image_url": {"url": f"data:image/jpeg;base64,{b64}"}
+        })
+
+    try:
+        response = _client.chat.completions.create(
+            model=OPENROUTER_MODEL,
+            messages=[{"role": "user", "content": content}],
+            max_tokens=4000
+        )
+        return response.choices[0].message.content or ""
+    except Exception as e:
+        raise RuntimeError(f"Multimodal OCR failed: {e}")
 
 def _extract_text_from_pdf(path: Path) -> tuple[str, str]:
-    """
-    Extract text from a PDF file using pdfplumber.
-    Falls back to pytesseract OCR page-by-page if pdfplumber returns no text.
-    """
-    texts: list[str] = []
-    ocr_fallback_used = False
-
+    """Extract text from PDF with multimodal fallback."""
+    texts = []
+    images_for_ocr = []
+    
     with pdfplumber.open(str(path)) as pdf:
-        for page_num, page in enumerate(pdf.pages, start=1):
-            page_text: str | None = page.extract_text()
-            if page_text and page_text.strip():
-                texts.append(page_text.strip())
+        for page in pdf.pages:
+            text = page.extract_text()
+            if text and len(text.strip()) > 50: # Threshold for digital text
+                texts.append(text.strip())
             else:
-                # Fallback: render page to image and OCR it
-                try:
-                    pil_image = page.to_image(resolution=200).original
-                    ocr_text = pytesseract.image_to_string(pil_image).strip()
-                    if ocr_text:
-                        texts.append(ocr_text)
-                    ocr_fallback_used = True
-                except Exception:
-                    # Fallback to OCR.Space for scanned PDF pages
-                    buffered = BytesIO()
-                    pil_image.save(buffered, format="JPEG")
-                    img_str = base64.b64encode(buffered.getvalue()).decode()
-                    payload = {"apikey": "helloworld", "language": "eng", "base64Image": f"data:image/jpeg;base64,{img_str}"}
-                    try:
-                        resp = requests.post("https://api.ocr.space/parse/image", data=payload, timeout=20)
-                        parsed = resp.json()
-                        if not parsed.get("IsErroredOnProcessing") and parsed.get("ParsedResults"):
-                            texts.append(parsed["ParsedResults"][0]["ParsedText"].strip())
-                            ocr_fallback_used = True
-                        else:
-                            texts.append("PATIENT NAME: Rahul Sharma\nPATIENT AGE: 35\nPOLICY ID: POL-2024-GOLD-001\nHOSPITAL NAME: Apollo Hospital\nADMISSION DATE: 2024-05-10\nDISCHARGE DATE: 2024-05-15\nDOCTOR NAME: Dr. Smith\nTREATMENT: Surgery\nCLAIM TYPE: inpatient\nTOTAL CLAIMED: 125000.00")
-                            ocr_fallback_used = True
-                    except Exception:
-                        texts.append("PATIENT NAME: Rahul Sharma\nPATIENT AGE: 35\nPOLICY ID: POL-2024-GOLD-001\nHOSPITAL NAME: Apollo Hospital\nADMISSION DATE: 2024-05-10\nDISCHARGE DATE: 2024-05-15\nDOCTOR NAME: Dr. Smith\nTREATMENT: Surgery\nCLAIM TYPE: inpatient\nTOTAL CLAIMED: 125000.00")
-                        ocr_fallback_used = True
-
-    combined = "\n\n".join(texts).strip()
-    status = "ok (OCR fallback on some pages)" if ocr_fallback_used else "ok"
-    return combined, status
-
-
-def _upscale_image(img: Image.Image) -> Image.Image:
-    """
-    Upscale an image if either dimension is below the minimum threshold.
-
-    Args:
-        img: PIL Image object.
-
-    Returns:
-        Potentially upscaled PIL Image object.
-    """
-    w, h = img.size
-    if w < _MIN_DIM_FOR_UPSCALE or h < _MIN_DIM_FOR_UPSCALE:
-        new_size = (w * _UPSCALE_FACTOR, h * _UPSCALE_FACTOR)
-        img = img.resize(new_size, Image.LANCZOS)
-    return img
-
-
-import base64
-from io import BytesIO
-import requests
+                # Scanned or low-text page -> render for multimodal OCR
+                images_for_ocr.append(page.to_image(resolution=150).original)
+    
+    if images_for_ocr:
+        ocr_text = _ocr_with_gemini(images_for_ocr)
+        texts.append(ocr_text)
+        status = "ok (multimodal OCR applied)"
+    else:
+        status = "ok (native text)"
+        
+    return "\n\n".join(texts).strip(), status
 
 def _extract_text_from_image(path: Path) -> tuple[str, str]:
-    """
-    Extract text from an image file using pytesseract OCR with a cloud API fallback.
-    """
+    """Extract text from image using multimodal LLM."""
     img = Image.open(str(path)).convert("RGB")
-    img = _upscale_image(img)
-    try:
-        text = pytesseract.image_to_string(img).strip()
-        status = "ok"
-    except Exception:
-        # Fallback to OCR.Space for evaluation since Tesseract is uninstalled
-        buffered = BytesIO()
-        img.save(buffered, format="JPEG")
-        img_str = base64.b64encode(buffered.getvalue()).decode()
-        payload = {
-            "apikey": "helloworld",
-            "language": "eng",
-            "base64Image": f"data:image/jpeg;base64,{img_str}"
-        }
-        resp = requests.post("https://api.ocr.space/parse/image", data=payload, timeout=20)
-        parsed = resp.json()
-        if not parsed.get("IsErroredOnProcessing") and parsed.get("ParsedResults"):
-            text = parsed["ParsedResults"][0]["ParsedText"].strip()
-            status = "ok (cloud OCR fallback)"
-        else:
-            # Absolute last resort if cloud OCR is down
-            text = "PATIENT NAME: Rahul Sharma\nPATIENT AGE: 35\nPOLICY ID: POL-2024-GOLD-001\nHOSPITAL NAME: Apollo Hospital\nADMISSION DATE: 2024-05-10\nDISCHARGE DATE: 2024-05-15\nDOCTOR NAME: Dr. Smith\nTREATMENT: Surgery\nCLAIM TYPE: inpatient\nTOTAL CLAIMED: 125000.00"
-            status = "ok (simulated fallback)"
-    return text, status
-
+    text = _ocr_with_gemini([img])
+    return text, "ok (multimodal OCR)"
 
 def read_file(file_path: str) -> FileReadResult:
-    """
-    Main entry point for Tool 1.
-
-    Reads a PDF or image file and extracts its text content.
-
-    Args:
-        file_path: Absolute or relative path to the claim document.
-
-    Returns:
-        FileReadResult with file metadata and extracted text.
-
-    Raises:
-        FileNotFoundError: If the file does not exist.
-        ValueError: If the file type is unsupported or extraction yields no text.
-    """
+    """Main entry point for Tool 1."""
     path = Path(file_path).resolve()
-
     if not path.exists():
         raise FileNotFoundError(f"File not found: {path}")
 
@@ -150,34 +98,20 @@ def read_file(file_path: str) -> FileReadResult:
 
     if ext in _PDF_EXTS:
         file_type = "application/pdf"
-        try:
-            raw_text, status = _extract_text_from_pdf(path)
-        except Exception as exc:
-            raise ValueError(f"Failed to extract text from PDF '{file_name}': {exc}") from exc
-
+        raw_text, status = _extract_text_from_pdf(path)
     elif ext in _IMAGE_EXTS:
         file_type = f"image/{ext.lstrip('.')}"
-        try:
-            raw_text, status = _extract_text_from_image(path)
-        except Exception as exc:
-            raise ValueError(f"Failed to extract text from image '{file_name}': {exc}") from exc
-
+        raw_text, status = _extract_text_from_image(path)
     else:
-        raise ValueError(
-            f"Unsupported file type '{ext}'. Accepted types: "
-            f"{sorted(_PDF_EXTS | _IMAGE_EXTS)}"
-        )
+        raise ValueError(f"Unsupported extension: {ext}")
 
-    if not raw_text:
-        raise ValueError(
-            f"No text could be extracted from '{file_name}'. "
-            "The file may be empty, corrupt, or contain only non-text content."
-        )
+    if not raw_text or not raw_text.strip():
+        raise ValueError("Extraction yielded no text content.")
 
     return FileReadResult(
         file_name=file_name,
+        char_count=len(raw_text),
         file_type=file_type,
         raw_text=raw_text,
-        char_count=len(raw_text),
-        status=status,
+        status=status
     )

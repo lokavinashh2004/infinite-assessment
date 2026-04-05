@@ -34,7 +34,7 @@ def chat():
     try:
         vectorstore = _load_vectorstore()
         docs = vectorstore.similarity_search(user_message, k=3)
-        rag_context = "\n\n".join([doc.page_content for doc in docs])
+        rag_context = "\n\n".join([(doc.page_content or "").strip() for doc in docs if (doc.page_content or "").strip()])
     except Exception as e:
         print(f"[RAG WARNING]: {e}")
         rag_context = "(Could not retrieve policy guidelines from vector store)"

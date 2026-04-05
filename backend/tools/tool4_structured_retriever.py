@@ -17,6 +17,41 @@ import pandas as pd
 from config import COVERAGE_JSON, POLICY_CSV
 from models.schemas import CoverageResponse, CoverageResult, PolicyRecord
 
+# ─── Caching (Loaded on first use) ─────────────────────────────────────────────
+
+_policies_cache: pd.DataFrame | None = None
+_coverage_cache: list[dict] | None = None
+
+def _get_policies_df() -> pd.DataFrame:
+    """Lazy-load the policies CSV into a cached DataFrame."""
+    global _policies_cache
+    if _policies_cache is None:
+        csv_path = Path(POLICY_CSV)
+        if not csv_path.exists():
+            raise FileNotFoundError(f"Policy CSV not found: {csv_path}")
+        try:
+            df = pd.read_csv(str(csv_path), dtype=str)
+            # Normalise column names once
+            df.columns = [c.strip().lower() for c in df.columns]
+            _policies_cache = df
+        except Exception as exc:
+            raise RuntimeError(f"Failed to read policies CSV: {exc}") from exc
+    return _policies_cache
+
+def _get_coverage_clauses() -> list[dict]:
+    """Lazy-load the coverage rules JSON into a cached list."""
+    global _coverage_cache
+    if _coverage_cache is None:
+        json_path = Path(COVERAGE_JSON)
+        if not json_path.exists():
+            raise FileNotFoundError(f"Coverage rules JSON not found: {json_path}")
+        try:
+            with open(str(json_path), "r", encoding="utf-8") as fh:
+                _coverage_cache = json.load(fh)
+        except Exception as exc:
+            raise RuntimeError(f"Failed to read coverage rules JSON: {exc}") from exc
+    return _coverage_cache
+
 
 # ─── Policy record lookup ──────────────────────────────────────────────────────
 
@@ -35,17 +70,7 @@ def get_policy_record(policy_id: str) -> PolicyRecord:
         FileNotFoundError: If data/policies.csv does not exist.
         RuntimeError: If the CSV cannot be parsed.
     """
-    csv_path = Path(POLICY_CSV)
-    if not csv_path.exists():
-        raise FileNotFoundError(f"Policy CSV not found: {csv_path}")
-
-    try:
-        df = pd.read_csv(str(csv_path), dtype=str)
-    except Exception as exc:
-        raise RuntimeError(f"Failed to read policies CSV: {exc}") from exc
-
-    # Normalise column names
-    df.columns = [c.strip().lower() for c in df.columns]
+    df = _get_policies_df()
 
     # Search case-insensitively
     mask = df["policy_id"].str.strip().str.upper() == policy_id.strip().upper()
@@ -121,15 +146,7 @@ def get_coverage_rules(treatment: list[str], plan_type: str) -> CoverageResponse
         FileNotFoundError: If data/coverage_rules.json does not exist.
         RuntimeError: If the JSON cannot be parsed.
     """
-    json_path = Path(COVERAGE_JSON)
-    if not json_path.exists():
-        raise FileNotFoundError(f"Coverage rules JSON not found: {json_path}")
-
-    try:
-        with open(str(json_path), "r", encoding="utf-8") as fh:
-            clauses: list[dict] = json.load(fh)
-    except Exception as exc:
-        raise RuntimeError(f"Failed to read coverage rules JSON: {exc}") from exc
+    clauses = _get_coverage_clauses()
 
     plan_type_lower = plan_type.strip().lower()
     coverage_results: list[CoverageResult] = []

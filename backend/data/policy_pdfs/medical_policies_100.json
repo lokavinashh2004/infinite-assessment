@@ -1,0 +1,2393 @@
+[
+  {
+    "policy_id": "P001",
+    "name": "Comprehensive Health Plan 1",
+    "type": "Comprehensive",
+    "min_age": 18,
+    "max_age": 55,
+    "covered_diseases": [
+      "Asthma",
+      "Newborn Care",
+      "Cancer",
+      "Heart Disease",
+      "Appendicitis",
+      "Hypertension"
+    ],
+    "exclusions": [
+      "Fractures",
+      "Arthritis"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "10%",
+    "premium": 6952
+  },
+  {
+    "policy_id": "P002",
+    "name": "Accident Health Plan 2",
+    "type": "Accident",
+    "min_age": 25,
+    "max_age": 55,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "20%",
+    "premium": 18031
+  },
+  {
+    "policy_id": "P003",
+    "name": "Accident Health Plan 3",
+    "type": "Accident",
+    "min_age": 21,
+    "max_age": 55,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "10%",
+    "premium": 32696
+  },
+  {
+    "policy_id": "P004",
+    "name": "Family Floater Health Plan 4",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 65,
+    "covered_diseases": [
+      "Hypertension",
+      "Stroke",
+      "Heart Disease",
+      "Tuberculosis"
+    ],
+    "exclusions": [
+      "Tuberculosis",
+      "Burn Injuries"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "20%",
+    "premium": 7847
+  },
+  {
+    "policy_id": "P005",
+    "name": "Individual Health Plan 5",
+    "type": "Individual",
+    "min_age": 25,
+    "max_age": 60,
+    "covered_diseases": [
+      "Fractures",
+      "Liver Disease",
+      "Hypertension",
+      "Diabetes",
+      "Asthma",
+      "Dengue"
+    ],
+    "exclusions": [
+      "Hypertension",
+      "Asthma"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "15%",
+    "premium": 29911
+  },
+  {
+    "policy_id": "P006",
+    "name": "Family Floater Health Plan 6",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 65,
+    "covered_diseases": [
+      "Liver Disease",
+      "Pregnancy",
+      "COVID-19",
+      "Hypertension",
+      "Kidney Disease",
+      "Appendicitis"
+    ],
+    "exclusions": [
+      "Asthma",
+      "Kidney Disease"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": true,
+    "room_rent_limit": "2%",
+    "co_pay": "15%",
+    "premium": 29867
+  },
+  {
+    "policy_id": "P007",
+    "name": "Premium Health Plan 7",
+    "type": "Premium",
+    "min_age": 18,
+    "max_age": 55,
+    "covered_diseases": [
+      "Malaria",
+      "Stroke",
+      "COVID-19",
+      "Hypertension"
+    ],
+    "exclusions": [
+      "Liver Disease",
+      "Fractures"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "20%",
+    "premium": 18934
+  },
+  {
+    "policy_id": "P008",
+    "name": "Family Floater Health Plan 8",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 65,
+    "covered_diseases": [
+      "Asthma",
+      "Appendicitis",
+      "COVID-19",
+      "Fractures",
+      "Arthritis"
+    ],
+    "exclusions": [
+      "Fractures",
+      "Stroke"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "0%",
+    "premium": 19373
+  },
+  {
+    "policy_id": "P009",
+    "name": "Premium Health Plan 9",
+    "type": "Premium",
+    "min_age": 18,
+    "max_age": 55,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Kidney Disease",
+      "Pregnancy",
+      "Arthritis",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Hypertension",
+      "Stroke"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": true,
+    "room_rent_limit": "1%",
+    "co_pay": "0%",
+    "premium": 35674
+  },
+  {
+    "policy_id": "P010",
+    "name": "Comprehensive Health Plan 10",
+    "type": "Comprehensive",
+    "min_age": 25,
+    "max_age": 60,
+    "covered_diseases": [
+      "Heart Disease",
+      "Dengue",
+      "Arthritis",
+      "Kidney Disease",
+      "Thyroid Disorder",
+      "Fever"
+    ],
+    "exclusions": [
+      "COVID-19",
+      "Pneumonia"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "10%",
+    "premium": 38271
+  },
+  {
+    "policy_id": "P011",
+    "name": "Family Floater Health Plan 11",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 65,
+    "covered_diseases": [
+      "Appendicitis",
+      "Pneumonia",
+      "Fever",
+      "Burn Injuries",
+      "Malaria"
+    ],
+    "exclusions": [
+      "Obesity",
+      "Fever"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "0%",
+    "premium": 28788
+  },
+  {
+    "policy_id": "P012",
+    "name": "Family Floater Health Plan 12",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 60,
+    "covered_diseases": [
+      "Obesity",
+      "Hypertension",
+      "Appendicitis",
+      "Cancer"
+    ],
+    "exclusions": [
+      "Cancer",
+      "Pregnancy"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "10%",
+    "premium": 15821
+  },
+  {
+    "policy_id": "P013",
+    "name": "Accident Health Plan 13",
+    "type": "Accident",
+    "min_age": 25,
+    "max_age": 65,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "20%",
+    "premium": 25428
+  },
+  {
+    "policy_id": "P014",
+    "name": "Accident Health Plan 14",
+    "type": "Accident",
+    "min_age": 21,
+    "max_age": 55,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "0%",
+    "premium": 19725
+  },
+  {
+    "policy_id": "P015",
+    "name": "Accident Health Plan 15",
+    "type": "Accident",
+    "min_age": 25,
+    "max_age": 55,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "0%",
+    "premium": 19432
+  },
+  {
+    "policy_id": "P016",
+    "name": "Family Floater Health Plan 16",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 60,
+    "covered_diseases": [
+      "Malaria",
+      "Hypertension",
+      "Pneumonia",
+      "Asthma"
+    ],
+    "exclusions": [
+      "COVID-19",
+      "Pregnancy"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "10%",
+    "premium": 19040
+  },
+  {
+    "policy_id": "P017",
+    "name": "Premium Health Plan 17",
+    "type": "Premium",
+    "min_age": 21,
+    "max_age": 60,
+    "covered_diseases": [
+      "Heart Disease",
+      "Pregnancy",
+      "Arthritis",
+      "Tuberculosis",
+      "Thyroid Disorder"
+    ],
+    "exclusions": [
+      "Diabetes",
+      "Pregnancy"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": true,
+    "room_rent_limit": "5000/day",
+    "co_pay": "0%",
+    "premium": 8972
+  },
+  {
+    "policy_id": "P018",
+    "name": "Family Floater Health Plan 18",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 60,
+    "covered_diseases": [
+      "Appendicitis",
+      "Thyroid Disorder",
+      "Cancer",
+      "Arthritis",
+      "Kidney Disease"
+    ],
+    "exclusions": [
+      "COVID-19",
+      "Thyroid Disorder"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "0%",
+    "premium": 9940
+  },
+  {
+    "policy_id": "P019",
+    "name": "Comprehensive Health Plan 19",
+    "type": "Comprehensive",
+    "min_age": 25,
+    "max_age": 55,
+    "covered_diseases": [
+      "Asthma",
+      "Kidney Disease",
+      "Arthritis",
+      "Obesity"
+    ],
+    "exclusions": [
+      "Obesity",
+      "Liver Disease"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "0%",
+    "premium": 8842
+  },
+  {
+    "policy_id": "P020",
+    "name": "Critical Illness Health Plan 20",
+    "type": "Critical Illness",
+    "min_age": 18,
+    "max_age": 65,
+    "covered_diseases": [
+      "Cancer",
+      "Heart Disease",
+      "Stroke",
+      "Kidney Failure"
+    ],
+    "exclusions": [
+      "Fever",
+      "Minor infections"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "10%",
+    "premium": 23694
+  },
+  {
+    "policy_id": "P021",
+    "name": "Family Floater Health Plan 21",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 65,
+    "covered_diseases": [
+      "Diabetes",
+      "Fractures",
+      "Appendicitis",
+      "Malaria",
+      "Obesity"
+    ],
+    "exclusions": [
+      "Pneumonia",
+      "Kidney Disease"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "0%",
+    "premium": 38281
+  },
+  {
+    "policy_id": "P022",
+    "name": "Accident Health Plan 22",
+    "type": "Accident",
+    "min_age": 18,
+    "max_age": 65,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "0%",
+    "premium": 31461
+  },
+  {
+    "policy_id": "P023",
+    "name": "Accident Health Plan 23",
+    "type": "Accident",
+    "min_age": 18,
+    "max_age": 60,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "10%",
+    "premium": 39261
+  },
+  {
+    "policy_id": "P024",
+    "name": "Comprehensive Health Plan 24",
+    "type": "Comprehensive",
+    "min_age": 25,
+    "max_age": 60,
+    "covered_diseases": [
+      "COVID-19",
+      "Stroke",
+      "Cancer",
+      "Pregnancy",
+      "Accidental Injury"
+    ],
+    "exclusions": [
+      "Dengue",
+      "Thyroid Disorder"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": true,
+    "room_rent_limit": "10000/day",
+    "co_pay": "0%",
+    "premium": 9754
+  },
+  {
+    "policy_id": "P025",
+    "name": "Individual Health Plan 25",
+    "type": "Individual",
+    "min_age": 25,
+    "max_age": 55,
+    "covered_diseases": [
+      "Cancer",
+      "Tuberculosis",
+      "Hypertension",
+      "Asthma",
+      "Pregnancy",
+      "Dengue"
+    ],
+    "exclusions": [
+      "Kidney Disease",
+      "Thyroid Disorder"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "0%",
+    "premium": 24825
+  },
+  {
+    "policy_id": "P026",
+    "name": "Family Floater Health Plan 26",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 65,
+    "covered_diseases": [
+      "Heart Disease",
+      "Appendicitis",
+      "Cancer",
+      "COVID-19"
+    ],
+    "exclusions": [
+      "Dengue",
+      "Burn Injuries"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "20%",
+    "premium": 27471
+  },
+  {
+    "policy_id": "P027",
+    "name": "Senior Citizen Health Plan 27",
+    "type": "Senior Citizen",
+    "min_age": 55,
+    "max_age": 75,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Arthritis",
+      "COVID-19",
+      "Diabetes"
+    ],
+    "exclusions": [
+      "Fever",
+      "Malaria"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "20%",
+    "premium": 22167
+  },
+  {
+    "policy_id": "P028",
+    "name": "Accident Health Plan 28",
+    "type": "Accident",
+    "min_age": 18,
+    "max_age": 55,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "10%",
+    "premium": 14768
+  },
+  {
+    "policy_id": "P029",
+    "name": "Critical Illness Health Plan 29",
+    "type": "Critical Illness",
+    "min_age": 18,
+    "max_age": 60,
+    "covered_diseases": [
+      "Cancer",
+      "Heart Disease",
+      "Stroke",
+      "Kidney Failure"
+    ],
+    "exclusions": [
+      "Fever",
+      "Minor infections"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "15%",
+    "premium": 25202
+  },
+  {
+    "policy_id": "P030",
+    "name": "Family Floater Health Plan 30",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 60,
+    "covered_diseases": [
+      "Tuberculosis",
+      "Appendicitis",
+      "Arthritis",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Cancer",
+      "Asthma"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "10%",
+    "premium": 16603
+  },
+  {
+    "policy_id": "P031",
+    "name": "Comprehensive Health Plan 31",
+    "type": "Comprehensive",
+    "min_age": 21,
+    "max_age": 60,
+    "covered_diseases": [
+      "COVID-19",
+      "Kidney Disease",
+      "Newborn Care",
+      "Heart Disease",
+      "Stroke"
+    ],
+    "exclusions": [
+      "Diabetes",
+      "Obesity"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "15%",
+    "premium": 18079
+  },
+  {
+    "policy_id": "P032",
+    "name": "Premium Health Plan 32",
+    "type": "Premium",
+    "min_age": 18,
+    "max_age": 55,
+    "covered_diseases": [
+      "Pregnancy",
+      "Liver Disease",
+      "Stroke",
+      "Malaria"
+    ],
+    "exclusions": [
+      "COVID-19",
+      "Hypertension"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": true,
+    "room_rent_limit": "5000/day",
+    "co_pay": "0%",
+    "premium": 28012
+  },
+  {
+    "policy_id": "P033",
+    "name": "Individual Health Plan 33",
+    "type": "Individual",
+    "min_age": 21,
+    "max_age": 55,
+    "covered_diseases": [
+      "Diabetes",
+      "Heart Disease",
+      "Burn Injuries",
+      "Arthritis",
+      "Tuberculosis",
+      "Malaria"
+    ],
+    "exclusions": [
+      "Arthritis",
+      "Burn Injuries"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "15%",
+    "premium": 12578
+  },
+  {
+    "policy_id": "P034",
+    "name": "Individual Health Plan 34",
+    "type": "Individual",
+    "min_age": 25,
+    "max_age": 60,
+    "covered_diseases": [
+      "Pneumonia",
+      "Appendicitis",
+      "Pregnancy",
+      "Liver Disease"
+    ],
+    "exclusions": [
+      "Tuberculosis",
+      "Arthritis"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "15%",
+    "premium": 26639
+  },
+  {
+    "policy_id": "P035",
+    "name": "Accident Health Plan 35",
+    "type": "Accident",
+    "min_age": 21,
+    "max_age": 65,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "10%",
+    "premium": 26376
+  },
+  {
+    "policy_id": "P036",
+    "name": "Family Floater Health Plan 36",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 65,
+    "covered_diseases": [
+      "Pregnancy",
+      "Kidney Disease",
+      "Burn Injuries",
+      "Fractures",
+      "Dengue",
+      "Stroke",
+      "Fever"
+    ],
+    "exclusions": [
+      "Dengue",
+      "Liver Disease"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": true,
+    "room_rent_limit": "10000/day",
+    "co_pay": "20%",
+    "premium": 26118
+  },
+  {
+    "policy_id": "P037",
+    "name": "Comprehensive Health Plan 37",
+    "type": "Comprehensive",
+    "min_age": 18,
+    "max_age": 65,
+    "covered_diseases": [
+      "Kidney Disease",
+      "Pregnancy",
+      "Hypertension",
+      "Dengue",
+      "Pneumonia",
+      "Malaria",
+      "Accidental Injury"
+    ],
+    "exclusions": [
+      "Asthma",
+      "Pregnancy"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": true,
+    "room_rent_limit": "2%",
+    "co_pay": "0%",
+    "premium": 19722
+  },
+  {
+    "policy_id": "P038",
+    "name": "Individual Health Plan 38",
+    "type": "Individual",
+    "min_age": 18,
+    "max_age": 60,
+    "covered_diseases": [
+      "Thyroid Disorder",
+      "Arthritis",
+      "Accidental Injury",
+      "Fractures"
+    ],
+    "exclusions": [
+      "Liver Disease",
+      "Newborn Care"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "10%",
+    "premium": 37399
+  },
+  {
+    "policy_id": "P039",
+    "name": "Comprehensive Health Plan 39",
+    "type": "Comprehensive",
+    "min_age": 25,
+    "max_age": 55,
+    "covered_diseases": [
+      "Arthritis",
+      "Asthma",
+      "Kidney Disease",
+      "Newborn Care"
+    ],
+    "exclusions": [
+      "Pneumonia",
+      "Thyroid Disorder"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "10%",
+    "premium": 21331
+  },
+  {
+    "policy_id": "P040",
+    "name": "Premium Health Plan 40",
+    "type": "Premium",
+    "min_age": 21,
+    "max_age": 65,
+    "covered_diseases": [
+      "Thyroid Disorder",
+      "Burn Injuries",
+      "Pneumonia",
+      "Arthritis",
+      "Appendicitis",
+      "Newborn Care"
+    ],
+    "exclusions": [
+      "Kidney Disease",
+      "Obesity"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "20%",
+    "premium": 21986
+  },
+  {
+    "policy_id": "P041",
+    "name": "Comprehensive Health Plan 41",
+    "type": "Comprehensive",
+    "min_age": 18,
+    "max_age": 60,
+    "covered_diseases": [
+      "Hypertension",
+      "Dengue",
+      "Asthma",
+      "COVID-19",
+      "Malaria",
+      "Fractures",
+      "Newborn Care"
+    ],
+    "exclusions": [
+      "Cancer",
+      "Asthma"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "20%",
+    "premium": 15014
+  },
+  {
+    "policy_id": "P042",
+    "name": "Critical Illness Health Plan 42",
+    "type": "Critical Illness",
+    "min_age": 18,
+    "max_age": 65,
+    "covered_diseases": [
+      "Cancer",
+      "Heart Disease",
+      "Stroke",
+      "Kidney Failure"
+    ],
+    "exclusions": [
+      "Fever",
+      "Minor infections"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "10%",
+    "premium": 35534
+  },
+  {
+    "policy_id": "P043",
+    "name": "Premium Health Plan 43",
+    "type": "Premium",
+    "min_age": 21,
+    "max_age": 60,
+    "covered_diseases": [
+      "Fractures",
+      "Stroke",
+      "Obesity",
+      "Fever"
+    ],
+    "exclusions": [
+      "Tuberculosis",
+      "Dengue"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "10%",
+    "premium": 32460
+  },
+  {
+    "policy_id": "P044",
+    "name": "Senior Citizen Health Plan 44",
+    "type": "Senior Citizen",
+    "min_age": 55,
+    "max_age": 80,
+    "covered_diseases": [
+      "Fever",
+      "Stroke",
+      "Malaria",
+      "Pregnancy",
+      "Kidney Disease",
+      "Thyroid Disorder",
+      "Cancer"
+    ],
+    "exclusions": [
+      "Burn Injuries",
+      "Appendicitis"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "20%",
+    "premium": 30822
+  },
+  {
+    "policy_id": "P045",
+    "name": "Family Floater Health Plan 45",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 65,
+    "covered_diseases": [
+      "Diabetes",
+      "COVID-19",
+      "Stroke",
+      "Malaria",
+      "Liver Disease"
+    ],
+    "exclusions": [
+      "Thyroid Disorder",
+      "Malaria"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "15%",
+    "premium": 29846
+  },
+  {
+    "policy_id": "P046",
+    "name": "Premium Health Plan 46",
+    "type": "Premium",
+    "min_age": 18,
+    "max_age": 60,
+    "covered_diseases": [
+      "Appendicitis",
+      "Diabetes",
+      "Tuberculosis",
+      "Asthma"
+    ],
+    "exclusions": [
+      "Accidental Injury",
+      "Hypertension"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "0%",
+    "premium": 7033
+  },
+  {
+    "policy_id": "P047",
+    "name": "Accident Health Plan 47",
+    "type": "Accident",
+    "min_age": 18,
+    "max_age": 55,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "20%",
+    "premium": 36035
+  },
+  {
+    "policy_id": "P048",
+    "name": "Comprehensive Health Plan 48",
+    "type": "Comprehensive",
+    "min_age": 21,
+    "max_age": 60,
+    "covered_diseases": [
+      "Burn Injuries",
+      "Newborn Care",
+      "Heart Disease",
+      "Kidney Disease",
+      "Dengue"
+    ],
+    "exclusions": [
+      "Heart Disease",
+      "Fractures"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "10%",
+    "premium": 25444
+  },
+  {
+    "policy_id": "P049",
+    "name": "Individual Health Plan 49",
+    "type": "Individual",
+    "min_age": 25,
+    "max_age": 65,
+    "covered_diseases": [
+      "Heart Disease",
+      "Newborn Care",
+      "Dengue",
+      "Pregnancy",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Heart Disease",
+      "Fractures"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "0%",
+    "premium": 27754
+  },
+  {
+    "policy_id": "P050",
+    "name": "Accident Health Plan 50",
+    "type": "Accident",
+    "min_age": 25,
+    "max_age": 60,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "20%",
+    "premium": 32528
+  },
+  {
+    "policy_id": "P051",
+    "name": "Senior Citizen Health Plan 51",
+    "type": "Senior Citizen",
+    "min_age": 55,
+    "max_age": 85,
+    "covered_diseases": [
+      "Newborn Care",
+      "Cancer",
+      "Arthritis",
+      "Kidney Disease",
+      "Pneumonia",
+      "COVID-19",
+      "Obesity"
+    ],
+    "exclusions": [
+      "Thyroid Disorder",
+      "Arthritis"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "0%",
+    "premium": 22589
+  },
+  {
+    "policy_id": "P052",
+    "name": "Senior Citizen Health Plan 52",
+    "type": "Senior Citizen",
+    "min_age": 55,
+    "max_age": 80,
+    "covered_diseases": [
+      "Thyroid Disorder",
+      "Fractures",
+      "Burn Injuries",
+      "Pregnancy",
+      "Stroke"
+    ],
+    "exclusions": [
+      "Malaria",
+      "Fever"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "10%",
+    "premium": 26300
+  },
+  {
+    "policy_id": "P053",
+    "name": "Senior Citizen Health Plan 53",
+    "type": "Senior Citizen",
+    "min_age": 55,
+    "max_age": 80,
+    "covered_diseases": [
+      "COVID-19",
+      "Burn Injuries",
+      "Newborn Care",
+      "Appendicitis",
+      "Fever",
+      "Pneumonia"
+    ],
+    "exclusions": [
+      "Liver Disease",
+      "Hypertension"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "20%",
+    "premium": 31635
+  },
+  {
+    "policy_id": "P054",
+    "name": "Comprehensive Health Plan 54",
+    "type": "Comprehensive",
+    "min_age": 25,
+    "max_age": 60,
+    "covered_diseases": [
+      "Fever",
+      "Hypertension",
+      "Dengue",
+      "Asthma",
+      "Stroke",
+      "Burn Injuries",
+      "Accidental Injury"
+    ],
+    "exclusions": [
+      "Pregnancy",
+      "Fractures"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "15%",
+    "premium": 36015
+  },
+  {
+    "policy_id": "P055",
+    "name": "Senior Citizen Health Plan 55",
+    "type": "Senior Citizen",
+    "min_age": 55,
+    "max_age": 85,
+    "covered_diseases": [
+      "COVID-19",
+      "Dengue",
+      "Newborn Care",
+      "Asthma",
+      "Heart Disease",
+      "Liver Disease",
+      "Malaria"
+    ],
+    "exclusions": [
+      "Heart Disease",
+      "Appendicitis"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "15%",
+    "premium": 17552
+  },
+  {
+    "policy_id": "P056",
+    "name": "Comprehensive Health Plan 56",
+    "type": "Comprehensive",
+    "min_age": 25,
+    "max_age": 65,
+    "covered_diseases": [
+      "Heart Disease",
+      "Liver Disease",
+      "Dengue",
+      "Asthma",
+      "Tuberculosis",
+      "Kidney Disease"
+    ],
+    "exclusions": [
+      "Dengue",
+      "Fever"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "0%",
+    "premium": 13295
+  },
+  {
+    "policy_id": "P057",
+    "name": "Accident Health Plan 57",
+    "type": "Accident",
+    "min_age": 21,
+    "max_age": 65,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "15%",
+    "premium": 37170
+  },
+  {
+    "policy_id": "P058",
+    "name": "Critical Illness Health Plan 58",
+    "type": "Critical Illness",
+    "min_age": 18,
+    "max_age": 65,
+    "covered_diseases": [
+      "Cancer",
+      "Heart Disease",
+      "Stroke",
+      "Kidney Failure"
+    ],
+    "exclusions": [
+      "Fever",
+      "Minor infections"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "15%",
+    "premium": 27328
+  },
+  {
+    "policy_id": "P059",
+    "name": "Premium Health Plan 59",
+    "type": "Premium",
+    "min_age": 21,
+    "max_age": 55,
+    "covered_diseases": [
+      "Stroke",
+      "Obesity",
+      "Hypertension",
+      "Fractures"
+    ],
+    "exclusions": [
+      "Accidental Injury",
+      "Pregnancy"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "0%",
+    "premium": 14943
+  },
+  {
+    "policy_id": "P060",
+    "name": "Family Floater Health Plan 60",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 60,
+    "covered_diseases": [
+      "Burn Injuries",
+      "Newborn Care",
+      "Pregnancy",
+      "Asthma",
+      "Pneumonia",
+      "Stroke",
+      "Thyroid Disorder"
+    ],
+    "exclusions": [
+      "Thyroid Disorder",
+      "Dengue"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": true,
+    "room_rent_limit": "1%",
+    "co_pay": "0%",
+    "premium": 33103
+  },
+  {
+    "policy_id": "P061",
+    "name": "Premium Health Plan 61",
+    "type": "Premium",
+    "min_age": 18,
+    "max_age": 65,
+    "covered_diseases": [
+      "COVID-19",
+      "Pregnancy",
+      "Hypertension",
+      "Kidney Disease",
+      "Asthma"
+    ],
+    "exclusions": [
+      "Kidney Disease",
+      "Appendicitis"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": true,
+    "room_rent_limit": "10000/day",
+    "co_pay": "20%",
+    "premium": 15258
+  },
+  {
+    "policy_id": "P062",
+    "name": "Comprehensive Health Plan 62",
+    "type": "Comprehensive",
+    "min_age": 25,
+    "max_age": 60,
+    "covered_diseases": [
+      "Diabetes",
+      "Asthma",
+      "Dengue",
+      "Accidental Injury",
+      "Thyroid Disorder",
+      "Hypertension"
+    ],
+    "exclusions": [
+      "Pregnancy",
+      "Asthma"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "10%",
+    "premium": 17964
+  },
+  {
+    "policy_id": "P063",
+    "name": "Comprehensive Health Plan 63",
+    "type": "Comprehensive",
+    "min_age": 18,
+    "max_age": 60,
+    "covered_diseases": [
+      "Hypertension",
+      "Diabetes",
+      "Kidney Disease",
+      "Dengue",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Fractures",
+      "Dengue"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "20%",
+    "premium": 13149
+  },
+  {
+    "policy_id": "P064",
+    "name": "Senior Citizen Health Plan 64",
+    "type": "Senior Citizen",
+    "min_age": 55,
+    "max_age": 85,
+    "covered_diseases": [
+      "Thyroid Disorder",
+      "Hypertension",
+      "Burn Injuries",
+      "Diabetes",
+      "Arthritis",
+      "Malaria",
+      "COVID-19"
+    ],
+    "exclusions": [
+      "Fever",
+      "Hypertension"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "10%",
+    "premium": 6359
+  },
+  {
+    "policy_id": "P065",
+    "name": "Critical Illness Health Plan 65",
+    "type": "Critical Illness",
+    "min_age": 18,
+    "max_age": 65,
+    "covered_diseases": [
+      "Cancer",
+      "Heart Disease",
+      "Stroke",
+      "Kidney Failure"
+    ],
+    "exclusions": [
+      "Fever",
+      "Minor infections"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "0%",
+    "premium": 16894
+  },
+  {
+    "policy_id": "P066",
+    "name": "Critical Illness Health Plan 66",
+    "type": "Critical Illness",
+    "min_age": 18,
+    "max_age": 65,
+    "covered_diseases": [
+      "Cancer",
+      "Heart Disease",
+      "Stroke",
+      "Kidney Failure"
+    ],
+    "exclusions": [
+      "Fever",
+      "Minor infections"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "10%",
+    "premium": 26843
+  },
+  {
+    "policy_id": "P067",
+    "name": "Senior Citizen Health Plan 67",
+    "type": "Senior Citizen",
+    "min_age": 55,
+    "max_age": 80,
+    "covered_diseases": [
+      "Dengue",
+      "Pregnancy",
+      "Stroke",
+      "Appendicitis",
+      "Diabetes",
+      "Thyroid Disorder",
+      "Hypertension"
+    ],
+    "exclusions": [
+      "Malaria",
+      "COVID-19"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "20%",
+    "premium": 12597
+  },
+  {
+    "policy_id": "P068",
+    "name": "Critical Illness Health Plan 68",
+    "type": "Critical Illness",
+    "min_age": 18,
+    "max_age": 60,
+    "covered_diseases": [
+      "Cancer",
+      "Heart Disease",
+      "Stroke",
+      "Kidney Failure"
+    ],
+    "exclusions": [
+      "Fever",
+      "Minor infections"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "20%",
+    "premium": 38976
+  },
+  {
+    "policy_id": "P069",
+    "name": "Premium Health Plan 69",
+    "type": "Premium",
+    "min_age": 18,
+    "max_age": 55,
+    "covered_diseases": [
+      "Appendicitis",
+      "Cancer",
+      "Dengue",
+      "Thyroid Disorder",
+      "Obesity",
+      "Heart Disease"
+    ],
+    "exclusions": [
+      "Fever",
+      "Accidental Injury"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "0%",
+    "premium": 20682
+  },
+  {
+    "policy_id": "P070",
+    "name": "Accident Health Plan 70",
+    "type": "Accident",
+    "min_age": 21,
+    "max_age": 55,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "10%",
+    "premium": 12435
+  },
+  {
+    "policy_id": "P071",
+    "name": "Critical Illness Health Plan 71",
+    "type": "Critical Illness",
+    "min_age": 18,
+    "max_age": 65,
+    "covered_diseases": [
+      "Cancer",
+      "Heart Disease",
+      "Stroke",
+      "Kidney Failure"
+    ],
+    "exclusions": [
+      "Fever",
+      "Minor infections"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "20%",
+    "premium": 22919
+  },
+  {
+    "policy_id": "P072",
+    "name": "Family Floater Health Plan 72",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 65,
+    "covered_diseases": [
+      "Stroke",
+      "Liver Disease",
+      "Burn Injuries",
+      "Pneumonia",
+      "Cancer"
+    ],
+    "exclusions": [
+      "Hypertension",
+      "COVID-19"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "15%",
+    "premium": 27274
+  },
+  {
+    "policy_id": "P073",
+    "name": "Comprehensive Health Plan 73",
+    "type": "Comprehensive",
+    "min_age": 21,
+    "max_age": 65,
+    "covered_diseases": [
+      "Cancer",
+      "Thyroid Disorder",
+      "Appendicitis",
+      "Obesity",
+      "Tuberculosis",
+      "Malaria",
+      "Stroke"
+    ],
+    "exclusions": [
+      "Thyroid Disorder",
+      "Malaria"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "20%",
+    "premium": 20650
+  },
+  {
+    "policy_id": "P074",
+    "name": "Individual Health Plan 74",
+    "type": "Individual",
+    "min_age": 21,
+    "max_age": 65,
+    "covered_diseases": [
+      "Newborn Care",
+      "Stroke",
+      "Pregnancy",
+      "Cancer",
+      "Obesity",
+      "Diabetes",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Pneumonia",
+      "Fractures"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "20%",
+    "premium": 11577
+  },
+  {
+    "policy_id": "P075",
+    "name": "Individual Health Plan 75",
+    "type": "Individual",
+    "min_age": 25,
+    "max_age": 55,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Cancer",
+      "Hypertension",
+      "Obesity",
+      "COVID-19",
+      "Malaria",
+      "Stroke"
+    ],
+    "exclusions": [
+      "Accidental Injury",
+      "Hypertension"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "20%",
+    "premium": 39971
+  },
+  {
+    "policy_id": "P076",
+    "name": "Premium Health Plan 76",
+    "type": "Premium",
+    "min_age": 25,
+    "max_age": 55,
+    "covered_diseases": [
+      "Asthma",
+      "Accidental Injury",
+      "Pregnancy",
+      "Dengue"
+    ],
+    "exclusions": [
+      "Asthma",
+      "Hypertension"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": true,
+    "room_rent_limit": "10000/day",
+    "co_pay": "10%",
+    "premium": 11451
+  },
+  {
+    "policy_id": "P077",
+    "name": "Comprehensive Health Plan 77",
+    "type": "Comprehensive",
+    "min_age": 21,
+    "max_age": 55,
+    "covered_diseases": [
+      "Malaria",
+      "Diabetes",
+      "Dengue",
+      "Tuberculosis"
+    ],
+    "exclusions": [
+      "Tuberculosis",
+      "Arthritis"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "10%",
+    "premium": 21003
+  },
+  {
+    "policy_id": "P078",
+    "name": "Family Floater Health Plan 78",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 60,
+    "covered_diseases": [
+      "Burn Injuries",
+      "Pregnancy",
+      "Asthma",
+      "Obesity",
+      "Fractures",
+      "Cancer",
+      "Accidental Injury"
+    ],
+    "exclusions": [
+      "Thyroid Disorder",
+      "Accidental Injury"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": true,
+    "room_rent_limit": "1%",
+    "co_pay": "20%",
+    "premium": 35118
+  },
+  {
+    "policy_id": "P079",
+    "name": "Senior Citizen Health Plan 79",
+    "type": "Senior Citizen",
+    "min_age": 55,
+    "max_age": 85,
+    "covered_diseases": [
+      "Hypertension",
+      "Thyroid Disorder",
+      "Tuberculosis",
+      "Fractures",
+      "Dengue"
+    ],
+    "exclusions": [
+      "Accidental Injury",
+      "Arthritis"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "20%",
+    "premium": 34939
+  },
+  {
+    "policy_id": "P080",
+    "name": "Premium Health Plan 80",
+    "type": "Premium",
+    "min_age": 21,
+    "max_age": 55,
+    "covered_diseases": [
+      "Stroke",
+      "Fractures",
+      "Tuberculosis",
+      "Dengue",
+      "Newborn Care"
+    ],
+    "exclusions": [
+      "Dengue",
+      "Fever"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "20%",
+    "premium": 22988
+  },
+  {
+    "policy_id": "P081",
+    "name": "Premium Health Plan 81",
+    "type": "Premium",
+    "min_age": 21,
+    "max_age": 55,
+    "covered_diseases": [
+      "Asthma",
+      "Accidental Injury",
+      "Liver Disease",
+      "Burn Injuries",
+      "COVID-19",
+      "Cancer"
+    ],
+    "exclusions": [
+      "Accidental Injury",
+      "Heart Disease"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "15%",
+    "premium": 25246
+  },
+  {
+    "policy_id": "P082",
+    "name": "Comprehensive Health Plan 82",
+    "type": "Comprehensive",
+    "min_age": 18,
+    "max_age": 55,
+    "covered_diseases": [
+      "Malaria",
+      "Arthritis",
+      "Kidney Disease",
+      "Liver Disease",
+      "Cancer",
+      "Appendicitis"
+    ],
+    "exclusions": [
+      "Tuberculosis",
+      "Pneumonia"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "20%",
+    "premium": 22860
+  },
+  {
+    "policy_id": "P083",
+    "name": "Premium Health Plan 83",
+    "type": "Premium",
+    "min_age": 21,
+    "max_age": 65,
+    "covered_diseases": [
+      "Heart Disease",
+      "Thyroid Disorder",
+      "Hypertension",
+      "Cancer",
+      "Asthma",
+      "Stroke"
+    ],
+    "exclusions": [
+      "Appendicitis",
+      "Tuberculosis"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "0%",
+    "premium": 30858
+  },
+  {
+    "policy_id": "P084",
+    "name": "Critical Illness Health Plan 84",
+    "type": "Critical Illness",
+    "min_age": 18,
+    "max_age": 65,
+    "covered_diseases": [
+      "Cancer",
+      "Heart Disease",
+      "Stroke",
+      "Kidney Failure"
+    ],
+    "exclusions": [
+      "Fever",
+      "Minor infections"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "10%",
+    "premium": 29970
+  },
+  {
+    "policy_id": "P085",
+    "name": "Critical Illness Health Plan 85",
+    "type": "Critical Illness",
+    "min_age": 18,
+    "max_age": 60,
+    "covered_diseases": [
+      "Cancer",
+      "Heart Disease",
+      "Stroke",
+      "Kidney Failure"
+    ],
+    "exclusions": [
+      "Fever",
+      "Minor infections"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "20%",
+    "premium": 26496
+  },
+  {
+    "policy_id": "P086",
+    "name": "Comprehensive Health Plan 86",
+    "type": "Comprehensive",
+    "min_age": 21,
+    "max_age": 65,
+    "covered_diseases": [
+      "Heart Disease",
+      "Cancer",
+      "Diabetes",
+      "Accidental Injury",
+      "Dengue",
+      "Obesity",
+      "Newborn Care"
+    ],
+    "exclusions": [
+      "Heart Disease",
+      "Asthma"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "15%",
+    "premium": 13890
+  },
+  {
+    "policy_id": "P087",
+    "name": "Comprehensive Health Plan 87",
+    "type": "Comprehensive",
+    "min_age": 25,
+    "max_age": 65,
+    "covered_diseases": [
+      "Fractures",
+      "Cancer",
+      "Arthritis",
+      "Heart Disease",
+      "Obesity",
+      "Accidental Injury",
+      "COVID-19"
+    ],
+    "exclusions": [
+      "Diabetes",
+      "Newborn Care"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "10%",
+    "premium": 19238
+  },
+  {
+    "policy_id": "P088",
+    "name": "Premium Health Plan 88",
+    "type": "Premium",
+    "min_age": 21,
+    "max_age": 55,
+    "covered_diseases": [
+      "Appendicitis",
+      "Accidental Injury",
+      "Tuberculosis",
+      "Diabetes",
+      "Stroke",
+      "COVID-19"
+    ],
+    "exclusions": [
+      "Liver Disease",
+      "Heart Disease"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "0%",
+    "premium": 11007
+  },
+  {
+    "policy_id": "P089",
+    "name": "Premium Health Plan 89",
+    "type": "Premium",
+    "min_age": 21,
+    "max_age": 55,
+    "covered_diseases": [
+      "Fractures",
+      "Liver Disease",
+      "Hypertension",
+      "Appendicitis",
+      "Asthma"
+    ],
+    "exclusions": [
+      "Malaria",
+      "Cancer"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "10%",
+    "premium": 5185
+  },
+  {
+    "policy_id": "P090",
+    "name": "Accident Health Plan 90",
+    "type": "Accident",
+    "min_age": 21,
+    "max_age": 55,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "15%",
+    "premium": 6689
+  },
+  {
+    "policy_id": "P091",
+    "name": "Premium Health Plan 91",
+    "type": "Premium",
+    "min_age": 18,
+    "max_age": 65,
+    "covered_diseases": [
+      "Fever",
+      "Kidney Disease",
+      "COVID-19",
+      "Diabetes",
+      "Cancer",
+      "Arthritis"
+    ],
+    "exclusions": [
+      "Pneumonia",
+      "Heart Disease"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "0%",
+    "premium": 36211
+  },
+  {
+    "policy_id": "P092",
+    "name": "Critical Illness Health Plan 92",
+    "type": "Critical Illness",
+    "min_age": 18,
+    "max_age": 60,
+    "covered_diseases": [
+      "Cancer",
+      "Heart Disease",
+      "Stroke",
+      "Kidney Failure"
+    ],
+    "exclusions": [
+      "Fever",
+      "Minor infections"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "0%",
+    "premium": 7841
+  },
+  {
+    "policy_id": "P093",
+    "name": "Individual Health Plan 93",
+    "type": "Individual",
+    "min_age": 21,
+    "max_age": 60,
+    "covered_diseases": [
+      "Pregnancy",
+      "Heart Disease",
+      "Obesity",
+      "Thyroid Disorder",
+      "Hypertension",
+      "Fractures",
+      "Malaria"
+    ],
+    "exclusions": [
+      "Burn Injuries",
+      "Cancer"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "20%",
+    "premium": 13270
+  },
+  {
+    "policy_id": "P094",
+    "name": "Accident Health Plan 94",
+    "type": "Accident",
+    "min_age": 25,
+    "max_age": 60,
+    "covered_diseases": [
+      "Accidental Injury",
+      "Fractures",
+      "Burn Injuries"
+    ],
+    "exclusions": [
+      "Illness",
+      "Pre-existing diseases"
+    ],
+    "max_claim": 500000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "0%",
+    "premium": 38131
+  },
+  {
+    "policy_id": "P095",
+    "name": "Premium Health Plan 95",
+    "type": "Premium",
+    "min_age": 25,
+    "max_age": 65,
+    "covered_diseases": [
+      "Arthritis",
+      "Thyroid Disorder",
+      "Asthma",
+      "Malaria",
+      "Stroke"
+    ],
+    "exclusions": [
+      "Arthritis",
+      "Heart Disease"
+    ],
+    "max_claim": 300000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "15%",
+    "premium": 32968
+  },
+  {
+    "policy_id": "P096",
+    "name": "Family Floater Health Plan 96",
+    "type": "Family Floater",
+    "min_age": 0,
+    "max_age": 65,
+    "covered_diseases": [
+      "Hypertension",
+      "Arthritis",
+      "Heart Disease",
+      "Tuberculosis"
+    ],
+    "exclusions": [
+      "Cancer",
+      "Appendicitis"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 0,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "15%",
+    "premium": 26603
+  },
+  {
+    "policy_id": "P097",
+    "name": "Premium Health Plan 97",
+    "type": "Premium",
+    "min_age": 25,
+    "max_age": 60,
+    "covered_diseases": [
+      "Dengue",
+      "Burn Injuries",
+      "Tuberculosis",
+      "Heart Disease"
+    ],
+    "exclusions": [
+      "Fractures",
+      "Pneumonia"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 3,
+    "maternity_cover": false,
+    "room_rent_limit": "2%",
+    "co_pay": "0%",
+    "premium": 15140
+  },
+  {
+    "policy_id": "P098",
+    "name": "Senior Citizen Health Plan 98",
+    "type": "Senior Citizen",
+    "min_age": 55,
+    "max_age": 85,
+    "covered_diseases": [
+      "Heart Disease",
+      "COVID-19",
+      "Fractures",
+      "Asthma",
+      "Arthritis",
+      "Appendicitis"
+    ],
+    "exclusions": [
+      "Burn Injuries",
+      "Pregnancy"
+    ],
+    "max_claim": 1000000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "1%",
+    "co_pay": "10%",
+    "premium": 6720
+  },
+  {
+    "policy_id": "P099",
+    "name": "Senior Citizen Health Plan 99",
+    "type": "Senior Citizen",
+    "min_age": 55,
+    "max_age": 85,
+    "covered_diseases": [
+      "Malaria",
+      "Tuberculosis",
+      "Fever",
+      "Kidney Disease",
+      "Cancer",
+      "Stroke"
+    ],
+    "exclusions": [
+      "Hypertension",
+      "Cancer"
+    ],
+    "max_claim": 100000,
+    "pre_existing_waiting_period": 1,
+    "maternity_cover": false,
+    "room_rent_limit": "10000/day",
+    "co_pay": "20%",
+    "premium": 11013
+  },
+  {
+    "policy_id": "P100",
+    "name": "Critical Illness Health Plan 100",
+    "type": "Critical Illness",
+    "min_age": 18,
+    "max_age": 65,
+    "covered_diseases": [
+      "Cancer",
+      "Heart Disease",
+      "Stroke",
+      "Kidney Failure"
+    ],
+    "exclusions": [
+      "Fever",
+      "Minor infections"
+    ],
+    "max_claim": 200000,
+    "pre_existing_waiting_period": 2,
+    "maternity_cover": false,
+    "room_rent_limit": "5000/day",
+    "co_pay": "0%",
+    "premium": 29251
+  }
+]

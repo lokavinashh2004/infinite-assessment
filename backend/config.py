@@ -20,7 +20,7 @@ load_dotenv()
 OPENROUTER_API_KEY: str = os.environ.get("OPENROUTER_API_KEY", "")
 """OpenRouter API key. Set via OPENROUTER_API_KEY in .env"""
 
-OPENROUTER_MODEL: str = "qwen/qwen-plus"
+OPENROUTER_MODEL: str = "google/gemini-2.0-flash-001"
 """The OpenRouter model used for data extraction."""
 
 # ─── Project root ──────────────────────────────────────────────────────────────
@@ -42,11 +42,14 @@ COVERAGE_JSON: Path = DATA_DIR / "coverage_rules.json"
 POLICY_PDF_DIR: Path = BASE_DIR / "policies"
 """Directory where users place policy documents for RAG indexing."""
 
-VECTOR_DB_DIR: Path = DATA_DIR / "vectorstore"
+VECTOR_DB_DIR: Path = DATA_DIR / "vector_db"
 """Directory where the ChromaDB persistent vector store is saved."""
 
 PAST_RECORDS_DIR: Path = BASE_DIR / "Past records"
-"""Directory where processed claim results (and optionally images) are archived."""
+"""Legacy directory for file-based archiving."""
+
+RECORDS_DB: Path = DATA_DIR / "records.db"
+"""SQLite database for storing processed claim records."""
 
 # ─── RAG settings ──────────────────────────────────────────────────────────────
 
