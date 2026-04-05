@@ -19,35 +19,63 @@ from typing import Any
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
-from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
+from langchain_core.embeddings import Embeddings
+from openai import OpenAI
 
 from config import (
     CHUNK_OVERLAP,
     CHUNK_SIZE,
-    EMBEDDING_MODEL,
+    OPENROUTER_API_KEY,
     POLICY_PDF_DIR,
     RAG_TOP_K,
     VECTOR_DB_DIR,
 )
 from models.schemas import RAGResult, RAGRuleItem
 
+# ─── Lightweight OpenRouter Embeddings (no PyTorch / sentence-transformers) ────
+
+class OpenRouterEmbeddings(Embeddings):
+    """
+    LangChain-compatible embedding class that calls OpenRouter's
+    text-embedding-3-small model. No local ML framework required.
+    """
+    _EMBED_MODEL = "openai/text-embedding-3-small"
+
+    def __init__(self):
+        self._client = OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=OPENROUTER_API_KEY,
+        )
+
+    def _embed(self, texts: list[str]) -> list[list[float]]:
+        texts = [t.replace("\n", " ") for t in texts]
+        response = self._client.embeddings.create(
+            model=self._EMBED_MODEL,
+            input=texts,
+        )
+        return [item.embedding for item in sorted(response.data, key=lambda x: x.index)]
+
+    def embed_documents(self, texts: list[str]) -> list[list[float]]:
+        return self._embed(texts)
+
+    def embed_query(self, text: str) -> list[float]:
+        return self._embed([text])[0]
+
+
 # ─── Cache / Lazy Loading ──────────────────────────────────────────────────────
 
-_embeddings_cache: HuggingFaceEmbeddings | None = None
+_embeddings_cache: OpenRouterEmbeddings | None = None
 _vectorstore_cache: Chroma | None = None
 
-def get_embeddings() -> HuggingFaceEmbeddings:
-    """Lazy initialization of the HuggingFace embedding model."""
+def get_embeddings() -> OpenRouterEmbeddings:
+    """Lazy initialization of the OpenRouter embedding client."""
     global _embeddings_cache
     if _embeddings_cache is None:
-        sys.stderr.write(f"[RAG] Initializing embedding model: {EMBEDDING_MODEL} ...\n")
-        _embeddings_cache = HuggingFaceEmbeddings(
-            model_name=EMBEDDING_MODEL,
-            model_kwargs={"device": "cpu"},
-            encode_kwargs={"normalize_embeddings": True},
-        )
+        sys.stderr.write("[RAG] Initializing OpenRouter embeddings (text-embedding-3-small) ...\n")
+        _embeddings_cache = OpenRouterEmbeddings()
     return _embeddings_cache
+
 
 
 # ─── Build / index ─────────────────────────────────────────────────────────────

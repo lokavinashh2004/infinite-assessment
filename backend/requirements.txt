@@ -3,7 +3,7 @@ flask
 flask-cors
 werkzeug
 
-# ─── OpenRouter / OpenAI SDK ────────────────────────────────────────────────────────
+# ─── OpenRouter / OpenAI SDK ──────────────────────────────────────────────────
 openai
 
 # ─── Document reading ─────────────────────────────────────────────────────────
@@ -12,12 +12,16 @@ pytesseract
 Pillow
 
 # ─── RAG stack ────────────────────────────────────────────────────────────────
+# NOTE: langchain_huggingface and sentence-transformers removed — embeddings
+# are now handled via OpenRouter API (openai/text-embedding-3-small), which
+# eliminates the PyTorch (~2 GB) dependency.
 langchain
 langchain-community
-langchain-huggingface
 langchain-chroma
+langchain-text-splitters
+langchain-core
 chromadb
-sentence-transformers
+pypdf
 
 # ─── Structured data ──────────────────────────────────────────────────────────
 pandas
@@ -28,12 +32,9 @@ pydantic
 # ─── Configuration ────────────────────────────────────────────────────────────
 python-dotenv
 
-# ─── Testing ──────────────────────────────────────────────────────────────────
-pytest
-pytest-asyncio
-
 # ─── Transitive deps ──────────────────────────────────────────────────────────
 httpx
 anyio
-mcp[cli]
-gunicorn
+
+# ─── Production server ────────────────────────────────────────────────────────
+gunicorn

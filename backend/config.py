@@ -10,10 +10,11 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
-# Load .env into environment as early as possible so all imports see the vars.
-load_dotenv()
+# Load .env into environment — override=True ensures stale system env vars
+# (e.g. from a previous broken session) never shadow the .env file values.
+load_dotenv(find_dotenv(usecwd=True), override=True)
 
 # ─── OpenRouter ──────────────────────────────────────────────────────────────
 
@@ -53,8 +54,8 @@ RECORDS_DB: Path = DATA_DIR / "records.db"
 
 # ─── RAG settings ──────────────────────────────────────────────────────────────
 
-EMBEDDING_MODEL: str = "sentence-transformers/all-MiniLM-L6-v2"
-"""HuggingFace embedding model used for building and querying the vector store."""
+EMBEDDING_MODEL: str = "openai/text-embedding-3-small"
+"""Embedding model used for building and querying the vector store (via OpenRouter API)."""
 
 CHUNK_SIZE: int = 500
 """Character chunk size for text splitting during vector store construction."""
