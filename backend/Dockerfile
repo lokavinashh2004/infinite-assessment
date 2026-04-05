@@ -15,16 +15,15 @@ WORKDIR /app
 # Copy requirements file first to leverage Docker layer caching
 COPY requirements.txt .
 
-# Install Python dependencies, and add gunicorn for production serving
+# Install Python dependencies (gunicorn already in requirements.txt)
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir gunicorn
 
 # Copy the rest of the backend files
 COPY . .
 
-# Expose the port the app runs on (Render defaults to using the PORT env variable)
-ENV PORT=8000
-EXPOSE $PORT
+# Expose port 10000 — Render's default port for Docker services
+EXPOSE 10000
 
-# Command to run the application using gunicorn for production capabilities
-CMD sh -c "gunicorn -b 0.0.0.0:${PORT} main:app"
+# Use a shell-form CMD so $PORT is expanded from Render's runtime environment.
+# Render injects PORT=10000 automatically. Fallback to 10000 if not set.
+CMD gunicorn --bind 0.0.0.0:${PORT:-10000} --timeout 600 --workers 1 main:app
