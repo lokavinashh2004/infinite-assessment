@@ -153,7 +153,7 @@ def batch_process_claims_tool(files: list[dict]) -> list[dict]:
 
 # ─── RESOURCES ────────────────────────────────────────────────────────────────
 
-@server.resource("past_records://list")
+@server.resource("past-records://list")
 def list_past_records() -> str:
     """Lists all successfully processed claim records from the database."""
     try:
@@ -166,7 +166,7 @@ def list_past_records() -> str:
     except Exception as e:
         return f"Error listing records: {e}"
 
-@server.resource("past_records://{record_id}/result")
+@server.resource("past-records://{record_id}/result")
 def get_past_record_resource(record_id: str) -> str:
     """Retrieves the full JSON extraction result for a specific record ID."""
     try:
