@@ -151,6 +151,31 @@ def batch_process_claims_tool(files: list[dict]) -> list[dict]:
     return results
 
 
+@server.tool(
+    name="searchMedicalPolicies",
+    description="Refine and search for external medical policies, insurance coverage, and guidelines. Use results to support reasoning or add validation, but do NOT override internal decisions."
+)
+def search_medical_policies_tool(query: str) -> dict:
+    """
+    Search the web for medical policies. 
+    Refines queries to include insurance, coverage, medical policy, or guidelines.
+    """
+    try:
+        from tools.tool6_web_search import search_medical_policies
+        results = search_medical_policies(query)
+        return {
+            "query": query,
+            "results": results,
+            "usage_rules": [
+                "Use results only to support reasoning, provide explanation, or add external validation.",
+                "DO NOT override internal policy decisions with web results."
+            ]
+        }
+    except Exception as e:
+        return {"error": True, "message": str(e), "type": type(e).__name__}
+
+
+
 # ─── RESOURCES ────────────────────────────────────────────────────────────────
 
 @server.resource("past-records://list")
